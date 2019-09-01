@@ -7,15 +7,51 @@ module Types
       description 'Find a user by ID'
       argument :id, ID, required: true
     end
+
     def user(id:)
       User.find(id)
+    end
+
+    field :location, LocationType, null: true do
+      description 'Find a location by ID'
+      argument :id, ID, required: true
+    end
+
+    def location(id:)
+      Location.find(id)
+    end
+
+    field :talk, TalkType, null: true do
+      description 'Find a talk by ID'
+      argument :id, ID, required: true
+    end
+
+    def talk(id:)
+      Talk.find(id)
     end
 
     field :users, [UserType], null: true do
       description 'List users'
     end
+
     def users
       User.all
+    end
+
+    field :locations, [LocationType], null: true do
+      description 'List locations'
+    end
+
+    def locations
+      Location.all
+    end
+
+    field :talks, [TalkType], null: true do
+      description 'List talks'
+    end
+
+    def talks
+      Talk.all
     end
   end
 end
