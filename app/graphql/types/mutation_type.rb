@@ -1,5 +1,6 @@
 module Types
   class MutationType < Types::BaseObject
+    field :createTalk, mutation: Mutations::CreateTalk
     field :createRoom, mutation: Mutations::CreateRoom
     field :location, mutation: Mutations::Location
     field :createLocation, mutation: Mutations::CreateLocation
