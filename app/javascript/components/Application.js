@@ -4,15 +4,13 @@ import styled from 'styled-components';
 
 import 'normalize-css';
 
-class Application extends React.Component {
-  render() {
-    return (
-      <AppContainer>
-        <Home />
-      </AppContainer>
-    );
-  }
-}
+const Application = () => {
+  return (
+    <AppContainer>
+      <Home />
+    </AppContainer>
+  );
+};
 
 export default Application;
 

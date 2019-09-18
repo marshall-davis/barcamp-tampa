@@ -4,26 +4,56 @@ import SwipeableDrawer from '@material-ui/core/Drawer';
 import Fab from '@material-ui/core/Fab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FixedSizeList as List } from 'react-window';
 
 // this is where map will be
 const Home = () => {
   const [drawerState, setDrawerState] = React.useState(true);
+
+  const getWindowDHeight = () => {
+    const { innerHeight: height } = window;
+    // subtracting to make room for header
+    return height - 100;
+  };
+
+  const useWindowHeight = () => {
+    const [windowHeight, setWindowHeight] = React.useState(getWindowDHeight());
+
+    React.useEffect(() => {
+      function handleResize() {
+        setWindowHeight(getWindowDHeight());
+      }
+
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    return windowHeight;
+  };
+
+  const Row = ({ index, style }) => (
+    <div className={index % 2 ? 'ListItemOdd' : 'ListItemEven'} style={style}>
+      <ListItem onClick={() => console.log('clicked')}>
+        Time Slot {index}
+      </ListItem>
+    </div>
+  );
+
   return (
     <HomeContainer>
       <StyledDrawer anchor="right" open={drawerState} onClose={() => null}>
         <DrawerWrapper>
           <div className="header">
-            <CloseIcon
-              onClick={() => setDrawerState(false)}
-              icon={faTimes}
-            />
+            <CloseIcon onClick={() => setDrawerState(false)} icon={faTimes} />
           </div>
-
-          <ListItem>Time Block</ListItem>
-          <ListItem>Time Block</ListItem>
-          <ListItem>Time Block</ListItem>
-          <ListItem>Time Block</ListItem>
-          <ListItem>Time Block</ListItem>
+          <List
+            height={useWindowHeight()}
+            itemCount={1000}
+            itemSize={35}
+            width={300}
+          >
+            {Row}
+          </List>
         </DrawerWrapper>
       </StyledDrawer>
       <PlaceHolder>map goes here</PlaceHolder>
@@ -63,10 +93,11 @@ const DrawerWrapper = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: flex-start;
   flex-direction: column;
   text-align: center;
+  padding-bottom: 20px;
 
   .header {
     position: fixed;
@@ -85,10 +116,14 @@ const PlaceHolder = styled.span`
 
 const ListItem = styled.span`
   width: 400px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const CloseIcon = styled(FontAwesomeIcon)`
-width: 100px;
+  width: 100px;
   &:hover {
     cursor: pointer;
   }
