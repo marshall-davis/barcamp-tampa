@@ -1,16 +1,28 @@
 {
   "name": "barcamp",
   "private": true,
+  "scripts": {
+    "format": "prettier --write './app/javascript/**'"
+  },
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.23",
+    "@fortawesome/free-solid-svg-icons": "^5.11.0",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "@material-ui/core": "^4.4.2",
     "@rails/webpacker": "^4.0.7",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "normalize-css": "^2.3.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react_ujs": "^2.6.0"
+    "react-fontawesome": "^1.6.1",
+    "react-router-dom": "^5.0.1",
+    "react_ujs": "^2.6.0",
+    "styled-components": "^4.3.2"
   },
   "devDependencies": {
+    "prettier": "1.18.2",
     "webpack-dev-server": "^3.8.0"
   }
 }

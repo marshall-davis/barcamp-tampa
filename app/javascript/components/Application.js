@@ -1,13 +1,22 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react';
+import Home from './Home/Home';
+import styled from 'styled-components';
+
+import 'normalize-css';
+
 class Application extends React.Component {
-  render () {
+  render() {
     return (
-      <React.Fragment>
-        Hello? Is this how React works?
-      </React.Fragment>
+      <AppContainer>
+        <Home />
+      </AppContainer>
     );
   }
 }
 
-export default Application
+export default Application;
+
+const AppContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+`;
