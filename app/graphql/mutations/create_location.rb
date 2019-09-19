@@ -6,7 +6,7 @@ module Mutations
     argument :name, String, required: true
 
     def resolve(name:)
-      location = Location.create(name: name)
+      location = ::Location.create(name: name)
 
       if location.save
         {
