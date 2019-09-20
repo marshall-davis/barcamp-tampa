@@ -1,58 +1,77 @@
 import React from 'react';
 import styled from 'styled-components';
 import SwipeableDrawer from '@material-ui/core/Drawer';
-import Fab from '@material-ui/core/Fab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FixedSizeList as List } from 'react-window';
+import ReactSwipe from 'react-swipe';
+import { useWindowHeight } from '../../utils/windowMeasurement';
 
-const Drawer = ({ drawerState, setDrawerState }) => {
-
-  const getWindowDHeight = () => {
-    const { innerHeight: height } = window;
-    // subtracting to make room for header
-    return height - 100;
-  };
-
-  const useWindowHeight = () => {
-    const [windowHeight, setWindowHeight] = React.useState(getWindowDHeight());
-
-    React.useEffect(() => {
-      function handleResize() {
-        setWindowHeight(getWindowDHeight());
-      }
-
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    return windowHeight;
-  };
+const Carousel = props => {
+  let reactSwipeEl;
 
   const Row = ({ index, style }) => (
     <div className={index % 2 ? 'ListItemOdd' : 'ListItemEven'} style={style}>
-      <ListItem onClick={() => console.log('clicked')}>
-        Time Slot {index}
-      </ListItem>
+      <ListItem onClick={() => console.log('clicked')}>Talk {index}</ListItem>
     </div>
   );
 
+  const numberOfSlides = 20;
+  const talkNodes = Array.apply(null, Array(numberOfSlides)).map((_, index) => {
+    return (
+      <div key={index}>
+        <List
+          height={useWindowHeight({ heightOffset: 100 })}
+          itemCount={1000}
+          itemSize={35}
+          width={300}
+        >
+          {Row}
+        </List>
+      </div>
+    );
+  });
+
+  const startSlide = 0;
+  const swipeOptions = {
+    startSlide:
+      startSlide < talkNodes.length && startSlide >= 0 ? startSlide : 0,
+    speed: 1000,
+    disableScroll: true,
+    continuous: true,
+    callback() {
+      console.log('slide changed');
+    },
+    transitionEnd() {
+      console.log('ended transition');
+    },
+  };
+
   return (
-      <StyledDrawer anchor="right" open={drawerState} onClose={() => null}>
-        <DrawerWrapper>
-          <div className="header">
-            <CloseIcon onClick={() => setDrawerState(false)} icon={faTimes} />
-          </div>
-          <List
-            height={useWindowHeight()}
-            itemCount={1000}
-            itemSize={35}
-            width={300}
-          >
-            {Row}
-          </List>
-        </DrawerWrapper>
-      </StyledDrawer>
+    <div>
+      <ReactSwipe
+        className="carousel"
+        swipeOptions={swipeOptions}
+        ref={el => (reactSwipeEl = el)}
+      >
+        {talkNodes}
+      </ReactSwipe>
+      <button onClick={() => reactSwipeEl.prev()}>Previous</button>
+      <button onClick={() => reactSwipeEl.next()}>Next</button>
+    </div>
+  );
+};
+
+const Drawer = ({ drawerState, setDrawerState }) => {
+  return (
+    <StyledDrawer anchor="right" open={drawerState} onClose={() => null}>
+      <DrawerWrapper>
+        <div className="header">
+          <CloseIcon onClick={() => setDrawerState(false)} icon={faTimes} />
+        </div>
+        <Carousel />
+      </DrawerWrapper>
+    </StyledDrawer>
   );
 };
 
@@ -82,6 +101,11 @@ const DrawerWrapper = styled.div`
     justify-content: center;
     align-items: center;
     padding: 0 20px;
+  }
+
+  .carousel {
+    width: 300px;
+    height: 100%;
   }
 `;
 

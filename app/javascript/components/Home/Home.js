@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import SwipeableDrawer from '@material-ui/core/Drawer';
 import Fab from '@material-ui/core/Fab';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { FixedSizeList as List } from 'react-window';
-import Drawer from "../Drawer/Drawer";
+import Drawer from '../Drawer/Drawer';
 
 // this is where map will be
 const Home = () => {

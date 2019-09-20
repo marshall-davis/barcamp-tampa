@@ -2,9 +2,11 @@
   "name": "barcamp",
   "private": true,
   "scripts": {
-    "format": "prettier --write './app/javascript/**'"
+    "format": "prettier --write './app/javascript/**/*.js'"
   },
-  "pre-commit": [ "format" ],
+  "pre-commit": [
+    "format"
+  ],
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.23",
@@ -19,9 +21,11 @@
     "react-dom": "^16.9.0",
     "react-fontawesome": "^1.6.1",
     "react-router-dom": "^5.0.1",
+    "react-swipe": "^6.0.4",
     "react-window": "^1.8.5",
     "react_ujs": "^2.6.0",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "swipe-js-iso": "^2.1.5"
   },
   "devDependencies": {
     "pre-commit": "^1.2.2",
