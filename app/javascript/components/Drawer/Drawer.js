@@ -7,7 +7,7 @@ import { FixedSizeList as List } from 'react-window';
 import ReactSwipe from 'react-swipe';
 import { useWindowHeight } from '../../utils/windowMeasurement';
 
-const Carousel = props => {
+const Carousel = () => {
   let reactSwipeEl;
 
   const Row = ({ index, style }) => (
@@ -16,7 +16,18 @@ const Carousel = props => {
     </div>
   );
 
-  const numberOfSlides = 20;
+  const numberOfSlides = 8;
+  const hourSlides = [
+    {
+      hour: 1,
+      hourTitle: '9:00 AM'
+    },
+    {
+      hour: 2,
+      hourTitle: "1:00 AM",
+    }
+  ];
+
   const talkNodes = Array.apply(null, Array(numberOfSlides)).map((_, index) => {
     return (
       <div key={index}>
@@ -48,7 +59,7 @@ const Carousel = props => {
   };
 
   return (
-    <div>
+    <CarouselContainer>
       <ReactSwipe
         className="carousel"
         swipeOptions={swipeOptions}
@@ -56,9 +67,12 @@ const Carousel = props => {
       >
         {talkNodes}
       </ReactSwipe>
-      <button onClick={() => reactSwipeEl.prev()}>Previous</button>
-      <button onClick={() => reactSwipeEl.next()}>Next</button>
-    </div>
+      <div>
+        <button onClick={() => reactSwipeEl.prev()}>Previous</button>
+        <button onClick={() => reactSwipeEl.next()}>Next</button>
+      </div>
+      <span>{`Slide 1 of ${numberOfSlides}`}</span>
+    </CarouselContainer>
   );
 };
 
@@ -122,4 +136,10 @@ const CloseIcon = styled(FontAwesomeIcon)`
   &:hover {
     cursor: pointer;
   }
+`;
+
+const CarouselContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
