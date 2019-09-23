@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import SwipeableDrawer from '@material-ui/core/Drawer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,27 +6,41 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FixedSizeList as List } from 'react-window';
 import ReactSwipe from 'react-swipe';
 import { useWindowHeight } from '../../utils/windowMeasurement';
+import { TALKS } from './quries';
+import { useQuery } from '@apollo/react-hooks';
 
 const Carousel = () => {
+  const { loading, error, data } = useQuery(TALKS);
+  if (error) console.error('error', error);
+  const [talks, setTalks] = useState([]);
+
+  useEffect(() => {
+    if (!loading) {
+      setTalks(data);
+    }
+  });
+
+  console.log('talks', talks);
   let reactSwipeEl;
 
   const Row = ({ index, style }) => (
-    <div className={index % 2 ? 'ListItemOdd' : 'ListItemEven'} style={style}>
-      <ListItem onClick={() => console.log('clicked')}>Talk {index}</ListItem>
+    <div
+      key={index}
+      className={index % 2 ? 'ListItemOdd' : 'ListItemEven'}
+      style={style}
+    >
+      {talks.length &&
+        talks.map(talk => {
+          return (
+            <ListItem onClick={() => console.log('clicked')}>
+              {talk.name}
+            </ListItem>
+          );
+        })}
     </div>
   );
 
-  const numberOfSlides = 8;
-  const hourSlides = [
-    {
-      hour: 1,
-      hourTitle: '9:00 AM',
-    },
-    {
-      hour: 2,
-      hourTitle: '1:00 AM',
-    },
-  ];
+  const numberOfSlides = talks.length;
 
   const talkNodes = Array.apply(null, Array(numberOfSlides)).map((_, index) => {
     return (

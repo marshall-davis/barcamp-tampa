@@ -2,11 +2,15 @@
   "name": "barcamp",
   "private": true,
   "scripts": {
-    "format": "prettier --write './app/javascript/**/*.js'"
+    "format": "prettier --write './app/javascript/**/*.js'",
+    "lint": "eslint './app/javascript/**/*.js'"
   },
-  "pre-commit": [
-    "format"
-  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn format",
+      "pre-push": "yarn lint"
+    }
+  },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.1",
     "@babel/preset-react": "^7.0.0",
@@ -34,7 +38,10 @@
     "swipe-js-iso": "^2.1.5"
   },
   "devDependencies": {
-    "pre-commit": "^1.2.2",
+    "eslint": "^6.4.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.0.1",
+    "husky": "^3.0.5",
     "prettier": "1.18.2",
     "webpack-dev-server": "^3.8.0"
   }
