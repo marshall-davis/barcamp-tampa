@@ -12,13 +12,13 @@ export const useWindowHeight = ({ heightOffset }) => {
   );
 
   React.useEffect(() => {
-    function handleResize() {
+    const handleResize = () => {
       setWindowHeight(getWindowDHeight({ heightOffset }));
-    }
+    };
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [heightOffset]);
 
   return windowHeight;
 };

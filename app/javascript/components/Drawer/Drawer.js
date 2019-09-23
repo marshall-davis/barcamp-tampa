@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import SwipeableDrawer from '@material-ui/core/Drawer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -9,88 +10,86 @@ import { useWindowHeight } from '../../utils/windowMeasurement';
 import { TALKS } from './quries';
 import { useQuery } from '@apollo/react-hooks';
 
-const Carousel = () => {
-  const { loading, error, data } = useQuery(TALKS);
-  if (error) console.error('error', error);
-  const [talks, setTalks] = useState([]);
+const Drawer = ({ drawerState, setDrawerState }) => {
+  const Carousel = () => {
+    const { loading, error, data } = useQuery(TALKS);
+    if (error) console.error('error', error);
+    const [talks, setTalks] = useState([]);
 
-  useEffect(() => {
-    if (!loading) {
-      setTalks(data);
-    }
-  });
+    useEffect(() => {
+      if (!loading) {
+        setTalks(data);
+      }
+    }, [loading, data]);
 
-  console.log('talks', talks);
-  let reactSwipeEl;
+    console.log('talks', talks);
+    let reactSwipeEl;
 
-  const Row = ({ index, style }) => (
-    <div
-      key={index}
-      className={index % 2 ? 'ListItemOdd' : 'ListItemEven'}
-      style={style}
-    >
-      {talks.length &&
-        talks.map(talk => {
-          return (
-            <ListItem onClick={() => console.log('clicked')}>
-              {talk.name}
-            </ListItem>
-          );
-        })}
-    </div>
-  );
-
-  const numberOfSlides = talks.length;
-
-  const talkNodes = Array.apply(null, Array(numberOfSlides)).map((_, index) => {
-    return (
-      <div key={index}>
-        <List
-          height={useWindowHeight({ heightOffset: 100 })}
-          itemCount={1000}
-          itemSize={35}
-          width={300}
-        >
-          {Row}
-        </List>
+    const Row = ({ index, style }) => (
+      <div
+        key={index}
+        className={index % 2 ? 'ListItemOdd' : 'ListItemEven'}
+        style={style}
+      >
+        {talks.length &&
+          talks.map(talk => {
+            return (
+              <ListItem key={index} onClick={() => console.log('clicked')}>
+                {talk.name}
+              </ListItem>
+            );
+          })}
       </div>
     );
-  });
 
-  const startSlide = 0;
-  const swipeOptions = {
-    startSlide:
-      startSlide < talkNodes.length && startSlide >= 0 ? startSlide : 0,
-    speed: 1000,
-    disableScroll: true,
-    continuous: true,
-    callback() {
-      console.log('slide changed');
-    },
-    transitionEnd() {
-      console.log('ended transition');
-    },
+    const numberOfSlides = talks.length;
+    const height = useWindowHeight({ heightOffset: 100 });
+
+    const talkNodes = Array.apply(null, Array(numberOfSlides)).map(
+      (_, index) => {
+        return (
+          <div key={index}>
+            <List height={height} itemCount={1000} itemSize={35} width={300}>
+              {Row}
+            </List>
+          </div>
+        );
+      }
+    );
+
+    const startSlide = 0;
+    const swipeOptions = {
+      startSlide:
+        startSlide < talkNodes.length && startSlide >= 0 ? startSlide : 0,
+      speed: 1000,
+      disableScroll: true,
+      continuous: true,
+      callback() {
+        console.log('slide changed');
+      },
+      transitionEnd() {
+        console.log('ended transition');
+      },
+    };
+
+    return (
+      <CarouselContainer>
+        <ReactSwipe
+          className="carousel"
+          swipeOptions={swipeOptions}
+          ref={el => (reactSwipeEl = el)}
+        >
+          {talkNodes}
+        </ReactSwipe>
+        <div>
+          <button onClick={() => reactSwipeEl.prev()}>Previous</button>
+          <button onClick={() => reactSwipeEl.next()}>Next</button>
+        </div>
+        <span>{`Slide 1 of ${numberOfSlides}`}</span>
+      </CarouselContainer>
+    );
   };
 
-  return (
-    <CarouselContainer>
-      <ReactSwipe
-        className="carousel"
-        swipeOptions={swipeOptions}
-        ref={el => (reactSwipeEl = el)}
-      >
-        {talkNodes}
-      </ReactSwipe>
-      <div>
-        <button onClick={() => reactSwipeEl.prev()}>Previous</button>
-        <button onClick={() => reactSwipeEl.next()}>Next</button>
-      </div>
-      <span>{`Slide 1 of ${numberOfSlides}`}</span>
-    </CarouselContainer>
-  );
-};
-
-const Drawer = ({ drawerState, setDrawerState }) => {
   return (
     <StyledDrawer anchor="right" open={drawerState} onClose={() => null}>
       <DrawerWrapper>
@@ -104,6 +103,13 @@ const Drawer = ({ drawerState, setDrawerState }) => {
 };
 
 export default Drawer;
+
+Drawer.propTypes = {
+  index: PropTypes.string,
+  style: PropTypes.object,
+  drawerState: PropTypes.boolean,
+  setDrawerState: PropTypes.func,
+};
 
 const StyledDrawer = styled(SwipeableDrawer)`
   color: #2e2f30;

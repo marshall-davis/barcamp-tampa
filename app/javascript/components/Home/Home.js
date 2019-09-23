@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Fab from '@material-ui/core/Fab';
-import { useQuery } from '@apollo/react-hooks';
 
 import Drawer from '../Drawer/Drawer';
-
-
 
 // this is where map will be
 const Home = () => {
