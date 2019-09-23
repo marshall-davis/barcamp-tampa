@@ -9,6 +9,7 @@ import ReactSwipe from 'react-swipe';
 import { useWindowHeight } from '../../utils/windowMeasurement';
 import { TALKS } from './quries';
 import { useQuery } from '@apollo/react-hooks';
+import Accordion from './Accordion';
 
 const Drawer = ({ drawerState, setDrawerState }) => {
   const Carousel = () => {
@@ -17,30 +18,30 @@ const Drawer = ({ drawerState, setDrawerState }) => {
     const [talks, setTalks] = useState([]);
 
     useEffect(() => {
-      if (!loading) {
-        setTalks(data);
+      if (!loading && data) {
+        setTalks(data.talks);
       }
     }, [loading, data]);
 
     console.log('talks', talks);
+    console.log('length', talks.length);
     let reactSwipeEl;
 
-    const Row = ({ index, style }) => (
-      <div
-        key={index}
-        className={index % 2 ? 'ListItemOdd' : 'ListItemEven'}
-        style={style}
-      >
-        {talks.length &&
-          talks.map(talk => {
-            return (
-              <ListItem key={index} onClick={() => console.log('clicked')}>
-                {talk.name}
-              </ListItem>
-            );
-          })}
-      </div>
-    );
+    const Row = ({ index, style, data }) => {
+      const talk = data[index];
+      return (
+        <div
+          className={index % 2 ? 'ListItemOdd' : 'ListItemEven'}
+          style={style}
+        >
+          <Accordion
+            description={talk.description}
+            name={`${talk.speaker.firstName} ${talk.speaker.lastName}`}
+            title={talk.title}
+          />
+        </div>
+      );
+    };
 
     const numberOfSlides = talks.length;
     const height = useWindowHeight({ heightOffset: 100 });
@@ -49,7 +50,13 @@ const Drawer = ({ drawerState, setDrawerState }) => {
       (_, index) => {
         return (
           <div key={index}>
-            <List height={height} itemCount={1000} itemSize={35} width={300}>
+            <List
+              height={height}
+              itemData={talks}
+              itemCount={talks.length}
+              itemSize={200}
+              width={300}
+            >
               {Row}
             </List>
           </div>
@@ -107,8 +114,16 @@ export default Drawer;
 Drawer.propTypes = {
   index: PropTypes.string,
   style: PropTypes.object,
-  drawerState: PropTypes.boolean,
+  drawerState: PropTypes.bool,
   setDrawerState: PropTypes.func,
+  data: {
+    description: PropTypes.string,
+    title: PropTypes.string,
+    speaker: {
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+    },
+  },
 };
 
 const StyledDrawer = styled(SwipeableDrawer)`
@@ -145,6 +160,7 @@ const DrawerWrapper = styled.div`
 
 const ListItem = styled.span`
   width: 400px;
+  height: 200px;
 
   &:hover {
     cursor: pointer;
