@@ -20,12 +20,12 @@ const Carousel = () => {
   const hourSlides = [
     {
       hour: 1,
-      hourTitle: '9:00 AM'
+      hourTitle: '9:00 AM',
     },
     {
       hour: 2,
-      hourTitle: "1:00 AM",
-    }
+      hourTitle: '1:00 AM',
+    },
   ];
 
   const talkNodes = Array.apply(null, Array(numberOfSlides)).map((_, index) => {

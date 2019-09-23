@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Fab from '@material-ui/core/Fab';
-import Drawer from '../Drawer/Drawer';
-
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+
+import Drawer from '../Drawer/Drawer';
 
 const TALKS = gql`
   {
