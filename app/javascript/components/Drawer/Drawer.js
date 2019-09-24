@@ -30,10 +30,7 @@ const Drawer = ({ drawerState, setDrawerState }) => {
     const Row = ({ index, style, data }) => {
       const talk = data[index];
       return (
-        <div
-          className={index % 2 ? 'ListItemOdd' : 'ListItemEven'}
-          style={style}
-        >
+        <div className="accordion--container" style={style}>
           <Accordion
             description={talk.description}
             name={`${talk.speaker.firstName} ${talk.speaker.lastName}`}
@@ -46,16 +43,16 @@ const Drawer = ({ drawerState, setDrawerState }) => {
     const numberOfSlides = talks.length;
     const height = useWindowHeight({ heightOffset: 100 });
 
-    const talkNodes = Array.apply(null, Array(numberOfSlides)).map(
+    const talkSlides = Array.apply(null, Array(numberOfSlides)).map(
       (_, index) => {
         return (
-          <div key={index}>
+          <div className="list-container" key={index}>
             <List
               height={height}
               itemData={talks}
               itemCount={talks.length}
               itemSize={200}
-              width={300}
+              style={{overflowX: 'hidden'}}
             >
               {Row}
             </List>
@@ -67,8 +64,8 @@ const Drawer = ({ drawerState, setDrawerState }) => {
     const startSlide = 0;
     const swipeOptions = {
       startSlide:
-        startSlide < talkNodes.length && startSlide >= 0 ? startSlide : 0,
-      speed: 1000,
+        startSlide < talkSlides.length && startSlide >= 0 ? startSlide : 0,
+      speed: 500,
       disableScroll: true,
       continuous: true,
       callback() {
@@ -86,7 +83,7 @@ const Drawer = ({ drawerState, setDrawerState }) => {
           swipeOptions={swipeOptions}
           ref={el => (reactSwipeEl = el)}
         >
-          {talkNodes}
+          {talkSlides}
         </ReactSwipe>
         <div>
           <button onClick={() => reactSwipeEl.prev()}>Previous</button>
@@ -141,6 +138,7 @@ const DrawerWrapper = styled.div`
   flex-direction: column;
   text-align: center;
   padding-bottom: 20px;
+  font-size: 16px;
 
   .header {
     position: fixed;
@@ -153,17 +151,8 @@ const DrawerWrapper = styled.div`
   }
 
   .carousel {
-    width: 300px;
+    width: 500px;
     height: 100%;
-  }
-`;
-
-const ListItem = styled.span`
-  width: 400px;
-  height: 200px;
-
-  &:hover {
-    cursor: pointer;
   }
 `;
 
@@ -178,4 +167,15 @@ const CarouselContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  .accordion--container {
+    width: 300px;
+    padding: 0 30px;
+  }
+
+  .list-container {
+    max-width: 100%;
+    overflow-x: hidden;
+    width: 90%;
+  }
 `;

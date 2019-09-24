@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -9,7 +10,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
+    width: '80%',
+    padding: '0 15px',
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -41,16 +43,23 @@ const Accordion = ({ title, description, name }) => {
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <Typography className={classes.heading}>{title}</Typography>
-          <Typography className={classes.secondaryHeading}>
-            {description}
-          </Typography>
+          <AccordionTitle>
+            <Typography className={classes.heading}>{title}</Typography>
+          </AccordionTitle>
+
+          <AccordionDescription>
+            <Typography className={classes.secondaryHeading}>
+              {description}
+            </Typography>
+          </AccordionDescription>
         </ExpansionPanelSummary>
+
         <ExpansionPanelDetails>
-          <Typography>
-            {description}
+          <AccordionContent>
+            <Typography>{description}</Typography>
+            <span>by {name}</span>
             <button>Attend Talk</button>
-          </Typography>
+          </AccordionContent>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
@@ -64,3 +73,16 @@ Accordion.propTypes = {
   description: PropTypes.string,
   name: PropTypes.string,
 };
+
+const AccordionTitle = styled.div`
+  background: bisque;
+`;
+
+const AccordionDescription = styled.div`
+  background: darkcyan;
+`;
+
+const AccordionContent = styled.div`
+  background: deepskyblue;
+  width: 100%;
+`;

@@ -15,13 +15,13 @@ const Home = () => {
       <PlaceHolder>map goes here</PlaceHolder>
 
       <ButtonContainer>
-        <Fab
+        <DrawerButton
           onClick={() => setDrawerState(!drawerState)}
           color="primary"
           aria-label="add"
         >
           Open
-        </Fab>
+        </DrawerButton>
       </ButtonContainer>
     </HomeContainer>
   );
@@ -47,4 +47,9 @@ const ButtonContainer = styled.div`
   position: absolute;
   bottom: 50px;
   right: 50px;
+`;
+
+const DrawerButton = styled(Fab)`
+  font-size: 16px;
+  color: red;
 `;
