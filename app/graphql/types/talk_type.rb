@@ -4,6 +4,7 @@ module Types
     field :user, Types::UserType, null: true
     field :description, String, null: true
     field :title, String, null: true
+    field :time, Integer, null: true
     field :room, Types::RoomType, null: true
   end
 end
