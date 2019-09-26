@@ -75,14 +75,14 @@ Accordion.propTypes = {
 };
 
 const AccordionTitle = styled.div`
-  background: bisque;
+  //background: bisque;
 `;
 
 const AccordionDescription = styled.div`
-  background: darkcyan;
+  //background: darkcyan;
 `;
 
 const AccordionContent = styled.div`
-  background: deepskyblue;
+  //background: deepskyblue;
   width: 100%;
 `;

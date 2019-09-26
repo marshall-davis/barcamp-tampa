@@ -52,7 +52,7 @@ const Drawer = ({ drawerState, setDrawerState }) => {
               itemData={talks}
               itemCount={talks.length}
               itemSize={200}
-              style={{overflowX: 'hidden'}}
+              style={{ overflowX: 'hidden' }}
             >
               {Row}
             </List>

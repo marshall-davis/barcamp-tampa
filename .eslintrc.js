@@ -4,10 +4,13 @@ module.exports = {
     es6: true,
   },
   extends: ['eslint:recommended', 'plugin:react/recommended'],
+  settings: {
+    version: '16.9.0',
+  },
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
-    require: true
+    require: true,
   },
   parserOptions: {
     ecmaFeatures: {
