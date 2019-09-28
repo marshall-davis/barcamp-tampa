@@ -113,14 +113,7 @@ Drawer.propTypes = {
   style: PropTypes.object,
   drawerState: PropTypes.bool,
   setDrawerState: PropTypes.func,
-  data: {
-    description: PropTypes.string,
-    title: PropTypes.string,
-    speaker: {
-      firstName: PropTypes.string,
-      lastName: PropTypes.string,
-    },
-  },
+  data: PropTypes.func,
 };
 
 const StyledDrawer = styled(SwipeableDrawer)`
@@ -153,6 +146,26 @@ const DrawerWrapper = styled.div`
   .carousel {
     width: 500px;
     height: 100%;
+
+    @media only screen and (max-device-width: 520px) {
+      width: 460px;
+    }
+
+    @media only screen and (max-device-width: 500px) {
+      width: 420px;
+    }
+
+    @media only screen and (max-device-width: 450px) {
+      width: 400px;
+    }
+
+    @media only screen and (max-device-width: 400px) {
+      width: 350px;
+    }
+
+    @media only screen and (max-device-width: 350px) {
+      width: 300px;
+    }
   }
 `;
 
@@ -174,8 +187,11 @@ const CarouselContainer = styled.div`
   }
 
   .list-container {
-    max-width: 100%;
     overflow-x: hidden;
     width: 90%;
+
+    @media only screen and (max-device-width: 550px) and (-webkit-device-pixel-ratio: 2) {
+      width: 80%;
+    }
   }
 `;
