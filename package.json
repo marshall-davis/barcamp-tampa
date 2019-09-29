@@ -1,16 +1,50 @@
 {
   "name": "barcamp",
   "private": true,
+  "scripts": {
+    "format": "prettier --write './app/javascript/**/*.js'",
+    "lint": "eslint './app/javascript/**/*.js'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn format",
+      "pre-push": "yarn lint"
+    }
+  },
   "dependencies": {
+    "@apollo/react-hooks": "^3.1.1",
     "@babel/preset-react": "^7.0.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.23",
+    "@fortawesome/free-solid-svg-icons": "^5.11.0",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "@material-ui/core": "^4.4.2",
+    "@material-ui/icons": "^4.4.3",
     "@rails/webpacker": "^4.0.7",
+    "apollo-boost": "^0.4.4",
+    "apollo-cache-inmemory": "^1.6.3",
+    "apollo-link": "^1.2.13",
+    "apollo-link-http": "^1.5.16",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "date-fns": "^2.4.1",
+    "graphql": "^14.5.7",
+    "normalize-css": "^2.3.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react_ujs": "^2.6.0"
+    "react-fontawesome": "^1.6.1",
+    "react-router-dom": "^5.0.1",
+    "react-swipe": "^6.0.4",
+    "react-window": "^1.6.0-alpha.1",
+    "react_ujs": "^2.6.0",
+    "styled-components": "^4.3.2",
+    "swipe-js-iso": "^2.1.5"
   },
   "devDependencies": {
+    "eslint": "^6.4.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.0.1",
+    "husky": "^3.0.5",
+    "prettier": "1.18.2",
     "webpack-dev-server": "^3.8.0"
   }
 }
