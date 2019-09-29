@@ -34,7 +34,7 @@
     "react-fontawesome": "^1.6.1",
     "react-router-dom": "^5.0.1",
     "react-swipe": "^6.0.4",
-    "react-window": "^1.8.5",
+    "react-window": "^1.6.0-alpha.1",
     "react_ujs": "^2.6.0",
     "styled-components": "^4.3.2",
     "swipe-js-iso": "^2.1.5"
