@@ -111,7 +111,10 @@ Drawer.propTypes = {
   style: PropTypes.object,
   drawerState: PropTypes.bool,
   setDrawerState: PropTypes.func,
-  data: PropTypes.func,
+  talkData: PropTypes.func,
+  setTalkHour: PropTypes,
+  talkTimeSlotIndex: PropTypes.number,
+  numberOfHours: PropTypes.number,
 };
 
 const StyledDrawer = styled(SwipeableDrawer)`
@@ -201,7 +204,7 @@ const ListItem = styled.div`
   margin-top: 50px;
   width: 100%;
   margin-left: 40px;
-  
+
   &:last-child {
     margin-bottom: 50px;
   }
