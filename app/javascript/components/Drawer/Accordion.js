@@ -49,7 +49,7 @@ const Accordion = ({ title, description, name }) => {
 
           <AccordionDescription>
             <Typography className={classes.secondaryHeading}>
-              {description}
+              s
             </Typography>
           </AccordionDescription>
         </ExpansionPanelSummary>

@@ -1,10 +1,11 @@
 import { gql } from 'apollo-boost';
 
 export const TALKS = gql`
-  {
+  query {
     talks {
       id
       title
+      time
       description
       speaker: user {
         email
@@ -13,9 +14,6 @@ export const TALKS = gql`
       }
       room {
         name
-        location {
-          name
-        }
       }
     }
   }

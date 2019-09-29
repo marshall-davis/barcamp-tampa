@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import SwipeableDrawer from '@material-ui/core/Drawer';
@@ -7,25 +7,18 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FixedSizeList as List } from 'react-window';
 import ReactSwipe from 'react-swipe';
 import { useWindowHeight } from '../../utils/windowMeasurement';
-import { TALKS } from './quries';
-import { useQuery } from '@apollo/react-hooks';
 import Accordion from './Accordion';
 
-const Drawer = ({ drawerState, setDrawerState }) => {
+const Drawer = ({
+  drawerState,
+  setDrawerState,
+  talkData,
+  setTalkHour,
+  talkTimeSlotIndex,
+  numberOfHours,
+}) => {
   const Carousel = () => {
-    const { loading, error, data } = useQuery(TALKS);
-    if (error) console.error('error', error);
-    const [talks, setTalks] = useState([]);
-
-    useEffect(() => {
-      if (!loading && data) {
-        setTalks(data.talks);
-      }
-    }, [loading, data]);
-
-    console.log('talks', talks);
-    console.log('length', talks.length);
-    let reactSwipeEl;
+    const [reactSwipeRef, setReactSwipeEl] = useState(null);
 
     const Row = ({ index, style, data }) => {
       const talk = data[index];
@@ -39,18 +32,16 @@ const Drawer = ({ drawerState, setDrawerState }) => {
         </div>
       );
     };
-
-    const numberOfSlides = talks.length;
     const height = useWindowHeight({ heightOffset: 100 });
 
-    const talkSlides = Array.apply(null, Array(numberOfSlides)).map(
+    const talkSlides = Array.apply(null, Array(numberOfHours)).map(
       (_, index) => {
         return (
           <div className="list-container" key={index}>
             <List
               height={height}
-              itemData={talks}
-              itemCount={talks.length}
+              itemData={talkData}
+              itemCount={talkData.length}
               itemSize={200}
               style={{ overflowX: 'hidden' }}
             >
@@ -60,19 +51,21 @@ const Drawer = ({ drawerState, setDrawerState }) => {
         );
       }
     );
-
-    const startSlide = 0;
+    const slideStart =
+      talkTimeSlotIndex < numberOfHours && talkTimeSlotIndex >= 0
+        ? talkTimeSlotIndex
+        : 0;
     const swipeOptions = {
-      startSlide:
-        startSlide < talkSlides.length && startSlide >= 0 ? startSlide : 0,
+      startSlide: slideStart,
       speed: 500,
-      disableScroll: true,
+      disableScroll: false,
       continuous: true,
       callback() {
         console.log('slide changed');
       },
       transitionEnd() {
         console.log('ended transition');
+        setTalkHour(reactSwipeRef.getPos());
       },
     };
 
@@ -81,17 +74,18 @@ const Drawer = ({ drawerState, setDrawerState }) => {
         <ReactSwipe
           className="carousel"
           swipeOptions={swipeOptions}
-          ref={el => (reactSwipeEl = el)}
+          ref={ref => setReactSwipeEl(ref)}
         >
           {talkSlides}
         </ReactSwipe>
         <div>
-          <button onClick={() => reactSwipeEl.prev()}>Previous</button>
-          <button onClick={() => reactSwipeEl.next()}>Next</button>
+          <button onClick={() => reactSwipeRef.swipe.prev()}>Previous</button>
+          <button onClick={() => reactSwipeRef.swipe.next()}>Next</button>
         </div>
-        <span>{`Slide 1 of ${numberOfSlides}`}</span>
+        <span>{`Slide ${talkTimeSlotIndex + 1} of ${numberOfHours}`}</span>
       </CarouselContainer>
     );
+    // TODO: abstract carousel ENDS HERE
   };
 
   return (
