@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Fab from '@material-ui/core/Fab';
 import { mockTalks } from '../Drawer/mockTalks';
@@ -32,7 +32,6 @@ const Home = () => {
     return hashMap;
   };
   const talks = makeTalkMap({ talks: mockTalks, talkTimeSlots });
-
 
   return (
     <HomeContainer>
