@@ -15,6 +15,7 @@ const getDimensionObject = node => {
   };
 };
 
+// eslint-disable-line
 export const useDimensions = ({ liveMeasure = true }) => {
   const [dimensions, setDimensions] = useState({});
   const [node, setNode] = useState(null);

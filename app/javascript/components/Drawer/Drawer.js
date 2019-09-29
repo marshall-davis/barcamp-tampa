@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import SwipeableDrawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import ReactSwipe from 'react-swipe';
 import Accordion from './Accordion';
 
@@ -26,21 +22,19 @@ const Drawer = ({
       (_, index) => {
         return (
           <div className="list-container" key={index}>
-            <List>
-              {talkData.map(talk => {
-                console.log('talk', talk);
-                return (
-                  <ListItem>
-                    <Accordion
-                      id={talk.id}
-                      description={talk.description}
-                      name={`${talk.speaker.firstName} ${talk.speaker.lastName}`}
-                      title={talk.title}
-                    />
-                  </ListItem>
-                );
-              })}
-            </List>
+            {talkData.map(talk => {
+              console.log('talk', talk);
+              return (
+                <ListItem key={index}>
+                  <Accordion
+                    id={talk.id}
+                    description={talk.description}
+                    name={`${talk.speaker.firstName} ${talk.speaker.lastName}`}
+                    title={talk.title}
+                  />
+                </ListItem>
+              );
+            })}
           </div>
         );
       }
@@ -164,13 +158,6 @@ const DrawerWrapper = styled.div`
   }
 `;
 
-const CloseIcon = styled(FontAwesomeIcon)`
-  width: 100px;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
 const CarouselContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -182,7 +169,7 @@ const CarouselContainer = styled.div`
   }
 
   > span {
-    margin-top: 10px;
+    margin-top: 20px;
   }
 
   .list-container {
@@ -192,6 +179,8 @@ const CarouselContainer = styled.div`
     flex-direction: column;
     width: 100%;
     height: 90vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
     @media only screen and (max-device-width: 550px) and (-webkit-device-pixel-ratio: 2) {
       width: 80%;
@@ -206,4 +195,14 @@ const DrawerNav = styled.div`
   z-index: 20;
   padding: 0 15px;
   height: 50px;
+`;
+
+const ListItem = styled.div`
+  margin-top: 50px;
+  width: 100%;
+  margin-left: 40px;
+  
+  &:last-child {
+    margin-bottom: 50px;
+  }
 `;

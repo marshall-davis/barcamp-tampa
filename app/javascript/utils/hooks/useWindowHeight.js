@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { element } from 'prop-types';
 
 const getWindowHeight = ({ heightOffset }) => {
   const { innerHeight: windowHeight } = window;
   return windowHeight - heightOffset;
 };
 
+// eslint-disable-line
 export const useWindowHeight = ({ heightOffset }) => {
   const [windowHeight, setWindowHeight] = useState(
     getWindowHeight({ heightOffset })
