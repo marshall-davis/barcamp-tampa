@@ -41,6 +41,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'react-rails'
 gem 'webpacker'
 
+# To be removed
+gem 'administrate'
+
 # Authentication support
 gem 'devise'
 
