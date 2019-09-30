@@ -20,10 +20,9 @@ const Drawer = ({
   const Carousel = () => {
     const [reactSwipeRef, setReactSwipeEl] = useState(null);
     // const height = useWindowHeight({ heightOffset: 100 });
-    const UUID = Math.random();
 
     const talkSlides = Array.apply(null, Array(numberOfHours)).map(
-      (_, index) => {
+      () => {
         return (
           <ListContainer key={uuid()}>
             {talkData.map(talk => {

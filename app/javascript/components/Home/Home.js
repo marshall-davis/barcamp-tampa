@@ -83,15 +83,6 @@ const ButtonContainer = styled.div`
   right: 50px;
 `;
 
-const DrawerButton = styled(Fab)`
-  font-size: 16px;
-  .MuiFab-root {
-    height: 100px !important;
-    width: 100px !important;
-    background: #b00100;
-  }
-`;
-
 const StyledButton = withStyles({
   root: {
     background: 'rgb(31, 150, 242)',
@@ -99,8 +90,8 @@ const StyledButton = withStyles({
     width: 100,
     padding: '0 30px',
     hover: {
-      background: 'red'
-    }
+      background: 'red',
+    },
   },
   label: {
     //
