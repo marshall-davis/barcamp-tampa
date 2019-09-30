@@ -5,9 +5,13 @@ class SeedPreviousData < ActiveRecord::Migration[5.2]
     )
     mall = Location.create(name: 'University Square Mall')
     kaiser = Location.create(name: 'Kaiser University')
-    usf111 = Room.create(name: '111', location_id: usf.id)
-    usf112 = Room.create(name: '112', location_id: usf.id)
-    usf123 = Room.create(name: '123', location_id: usf.id)
+    Location.find_each do |location|
+      floor = location.floors.build(number: 1)
+      floor.save
+    end
+    usf111 = Room.create(name: '111', floor_id: usf.floors.first.id)
+    usf112 = Room.create(name: '112', floor_id: usf.floors.first.id)
+    usf123 = Room.create(name: '123', floor_id: usf.floors.first.id)
     Talk.create(
       user_id: User.create(email: 'sc@hyve.email', first_name: 'Sebastian', last_name: 'Castaldi', twitter: '@wwwsebas', password: SafeRandom.string).id,
       description: 'Overview of Angular 2 - What\'s New, Typescript, Performance, Quick Demo',
@@ -30,7 +34,7 @@ class SeedPreviousData < ActiveRecord::Migration[5.2]
       time: '2017-01-01 15:00:00'
     )
     jrgriggs = User.create(email: 'jg@hyve.email', password: SafeRandom.string, first_name: 'JR', last_name: 'Griggs', twitter: '@JTGriggs')
-    usf1301 = Room.create(name: '1301', location_id: usf.id)
+    usf1301 = Room.create(name: '1301', floor_id: usf.floors.first.id)
     Talk.create(
       user_id: jrgriggs.id,
       title: 'Designing Websites that Cinvert Free Critiques',
@@ -59,7 +63,7 @@ class SeedPreviousData < ActiveRecord::Migration[5.2]
       room_id: usf112.id,
       time: '2017-01-01 11:00:00'
     )
-    usf1300 = Room.create(name: '1300', location_id: usf.id)
+    usf1300 = Room.create(name: '1300', floor_id: usf.floors.first.id)
     Talk.create(
       user_id: User.create(email: 'jc@hyve.email', password: SafeRandom.string, first_name: 'Jack', last_name: 'Catlin', twitter: '@jack_catlin').id,
       title: 'Online Community Management Through Chat Programs',
@@ -74,7 +78,7 @@ class SeedPreviousData < ActiveRecord::Migration[5.2]
       room_id: usf1300.id,
       time: '2017-01-01 11:00:00'
     )
-    usf1101 = Room.create(name: '1101', location_id: usf.id)
+    usf1101 = Room.create(name: '1101', floor_id: usf.floors.first.id)
     Talk.create(
       user_id: User.create(email: 'et@hyve.email', password: SafeRandom.string, first_name: 'Evan', last_name: 'Thacker', twitter: '@evan_thacker').id,
       title: 'Personal Branding',

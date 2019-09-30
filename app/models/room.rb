@@ -1,3 +1,4 @@
 class Room < ApplicationRecord
-  belongs_to :location
+  belongs_to :floor
+  has_many :talks
 end

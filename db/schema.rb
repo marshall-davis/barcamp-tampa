@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(version: 2019_09_19_005516) do
     t.index ["location_id"], name: "index_addresses_locations_on_location_id"
   end
 
+  create_table "floors", force: :cascade do |t|
+    t.integer "location_id", null: false
+    t.integer "number", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -41,7 +48,7 @@ ActiveRecord::Schema.define(version: 2019_09_19_005516) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
-    t.integer "location_id"
+    t.integer "floor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
