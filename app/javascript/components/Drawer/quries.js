@@ -11,6 +11,9 @@ export const TALKS = gql`
         email
         firstName
         lastName
+        twitter
+        facebook
+        #TODO: need linkedin
       }
       room {
         name
