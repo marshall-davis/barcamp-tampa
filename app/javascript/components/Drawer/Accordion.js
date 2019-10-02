@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
 
 const Accordion = ({ talkData }) => {
   console.log('talkData', talkData);
-  const { title, description, name, speaker } = talkData;
+  const { title, description, speaker } = talkData;
   const { firstName, lastName, email, twitter, facebook, linkedin } = speaker;
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
@@ -77,16 +77,25 @@ const Accordion = ({ talkData }) => {
             </div>
 
             <div className="social-media">
-              <a href={`https://twitter.com/${twitter}`} target="_blank">
+              <a
+                href={`https://twitter.com/${twitter}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Icon color={'#33CCFF'} icon={faTwitterSquare} />
               </a>
               <a
                 href={`https://www.linkedin.com/in/${linkedin}`}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <Icon color={'#4875B4'} icon={faLinkedin} />
               </a>
-              <a href={`https://www.facebook.com/${facebook}`} target="_blank">
+              <a
+                href={`https://www.facebook.com/${facebook}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Icon color={'#3b5998'} icon={faFacebookSquare} />
               </a>
             </div>
@@ -104,6 +113,19 @@ Accordion.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   name: PropTypes.string,
+  talkData: {
+    title: PropTypes.string,
+    description: PropTypes.string,
+    name: PropTypes.string,
+    speaker: {
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      email: PropTypes.string,
+      twitter: PropTypes.string,
+      facebook: PropTypes.string,
+      linkedin: PropTypes.string,
+    },
+  },
 };
 
 const AccordionContainer = styled.div`

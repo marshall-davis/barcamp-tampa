@@ -21,21 +21,19 @@ const Drawer = ({
     const [reactSwipeRef, setReactSwipeEl] = useState(null);
     // const height = useWindowHeight({ heightOffset: 100 });
 
-    const talkSlides = Array.apply(null, Array(numberOfHours)).map(
-      () => {
-        return (
-          <ListContainer key={uuid()}>
-            {talkData.map(talk => {
-              return (
-                <ListItem key={talk.id}>
-                  <Accordion talkData={talk} />
-                </ListItem>
-              );
-            })}
-          </ListContainer>
-        );
-      }
-    );
+    const talkSlides = Array.apply(null, Array(numberOfHours)).map(() => {
+      return (
+        <ListContainer key={uuid()}>
+          {talkData.map(talk => {
+            return (
+              <ListItem key={talk.id}>
+                <Accordion talkData={talk} />
+              </ListItem>
+            );
+          })}
+        </ListContainer>
+      );
+    });
     const slideStart =
       talkTimeSlotIndex < numberOfHours && talkTimeSlotIndex >= 0
         ? talkTimeSlotIndex
