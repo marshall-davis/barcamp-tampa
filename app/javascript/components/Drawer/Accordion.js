@@ -33,17 +33,15 @@ const useStyles = makeStyles(theme => ({
     padding: '0 10px',
     display: 'flex',
     justifyContent: 'center',
-    height: '40px',
+    height: 'auto',
     alignItems: 'center',
-    '@media (max-height: 868px)': {
-      height: '65px',
-    },
   },
 }));
 
-const Accordion = ({ talkData }) => {
+const Accordion = ({ talkData, currentHour }) => {
   console.log('talkData', talkData);
-  const { title, description, speaker } = talkData;
+  const { title, description, speaker, room } = talkData;
+  console.log('data', talkData);
   const { firstName, lastName, twitter, facebook, linkedin } = speaker;
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
@@ -65,6 +63,7 @@ const Accordion = ({ talkData }) => {
           id="panel1bh-header"
         >
           <h4 className="accordion-title">{title}</h4>
+          <h5>{`Room #${room.name}`}</h5>
           {/*<AccordionDescription>{`${time}:00`}</AccordionDescription>*/}
         </ExpansionPanelSummary>
 
@@ -73,6 +72,7 @@ const Accordion = ({ talkData }) => {
             <div className="speaker-info">
               <p className="description">{description}</p>
               <p className="speaker-name">{`By ${firstName} ${lastName}`}</p>
+              <p className="talk-time">{`@ ${currentHour}:00`}</p>
             </div>
 
             <div className="social-media">
@@ -112,17 +112,18 @@ Accordion.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   name: PropTypes.string,
+  currentHour: PropTypes.string,
   talkData: {
     title: PropTypes.string,
     description: PropTypes.string,
     name: PropTypes.string,
-    speaker: {
+    speaker: PropTypes.shape({
       firstName: PropTypes.string,
       lastName: PropTypes.string,
       twitter: PropTypes.string,
       facebook: PropTypes.string,
       linkedin: PropTypes.string,
-    },
+    }),
   },
 };
 
@@ -131,6 +132,16 @@ const AccordionContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+
+    h4 {
+      margin: 0;
+    }
+
+    h5 {
+      margin: 10px 0 0 0;
+      font-size: 16px;
+    }
   }
 
   .MuiExpansionPanelDetails-root {
@@ -149,6 +160,10 @@ const AccordionContent = styled.div`
   width: 100%;
 
   .speaker-name {
+    font-weight: bold;
+  }
+
+  .talk-time {
     font-weight: bold;
   }
 
