@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :users
+      resources :addresses
+      resources :floors
+      resources :locations
+      resources :rooms
+      resources :talks
+
+      root to: "users#index"
+    end
   namespace :backdoor do
     resources :users
     resources :addresses
