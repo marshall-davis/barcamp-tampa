@@ -27,7 +27,7 @@ const Drawer = ({
           {talkData.map(talk => {
             return (
               <ListItem key={talk.id}>
-                <Accordion talkData={talk} />
+                <Accordion talkData={talk} currentHour={currentHour} />
               </ListItem>
             );
           })}
@@ -100,7 +100,7 @@ const Drawer = ({
   return (
     <StyledDrawer anchor="right" open={drawerState} onClose={() => null}>
       <DrawerWrapper>
-        <Carousel />
+        <Carousel currentHout={currentHour} />
       </DrawerWrapper>
     </StyledDrawer>
   );
@@ -225,7 +225,45 @@ const ListContainer = styled.div`
   overflow-x: hidden;
   background: #b0d58a;
 
-  @media only screen and (max-device-width: 768px) and (max-device-height: 768px) {
+  // desktop queries
+  @media only screen and (max-height: 1240px) {
+    height: 84vh;
+  }
+
+  @media only screen and (max-height: 1115px) {
+    height: 80vh;
+  }
+
+  @media only screen and (max-height: 1000px) {
+    height: 78vh;
+  }
+
+  @media only screen and (max-height: 800px) {
+    height: 75vh;
+  }
+
+  @media only screen and (max-height: 725px) {
+    height: 73vh;
+  }
+
+  @media only screen and (max-height: 650px) {
+    height: 70vh;
+  }
+
+  @media only screen and (max-height: 590px) {
+    height: 67vh;
+  }
+
+  @media only screen and (max-height: 530px) {
+    height: 65vh;
+  }
+
+  // mobile queries
+  @media only screen and (max-device-height: 1366px) {
+    height: 82vh;
+  }
+
+  @media only screen and (max-device-height: 1024px) {
     height: 82vh;
   }
 
@@ -237,12 +275,12 @@ const ListContainer = styled.div`
     width: 80%;
   }
 
-  @media only screen and (max-device-height: 1366px) {
+  @media only screen and (max-device-height: 840px) {
     height: 82vh;
   }
 
-  @media only screen and (max-device-height: 840px) {
-    height: 82vh;
+  @media only screen and (max-device-height: 768px) {
+    height: 76vh;
   }
 
   @media only screen and (max-device-height: 740px) {
