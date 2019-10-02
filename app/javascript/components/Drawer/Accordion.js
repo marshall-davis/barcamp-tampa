@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 const Accordion = ({ talkData }) => {
   console.log('talkData', talkData);
   const { title, description, speaker } = talkData;
-  const { firstName, lastName, email, twitter, facebook, linkedin } = speaker;
+  const { firstName, lastName, twitter, facebook, linkedin } = speaker;
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
@@ -72,8 +72,7 @@ const Accordion = ({ talkData }) => {
           <AccordionContent>
             <div className="speaker-info">
               <p className="description">{description}</p>
-              <span className="speaker-name">{`${firstName} ${lastName}`}</span>
-              <span className="speaker-email">{`${email}`}</span>
+              <p className="speaker-name">{`By ${firstName} ${lastName}`}</p>
             </div>
 
             <div className="social-media">
@@ -120,7 +119,6 @@ Accordion.propTypes = {
     speaker: {
       firstName: PropTypes.string,
       lastName: PropTypes.string,
-      email: PropTypes.string,
       twitter: PropTypes.string,
       facebook: PropTypes.string,
       linkedin: PropTypes.string,
@@ -150,8 +148,8 @@ const AccordionContent = styled.div`
   align-items: center;
   width: 100%;
 
-  a {
-    text-decoration: none;
+  .speaker-name {
+    font-weight: bold;
   }
 
   .social-media {
@@ -160,6 +158,10 @@ const AccordionContent = styled.div`
     justify-content: space-around;
     align-items: center;
     margin: 10px 0;
+  }
+
+  a {
+    text-decoration: none;
   }
 `;
 
