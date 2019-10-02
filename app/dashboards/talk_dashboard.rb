@@ -16,6 +16,8 @@ class TalkDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     time: Field::DateTime,
+    name: Field::String,
+    twitter: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -41,6 +43,8 @@ class TalkDashboard < Administrate::BaseDashboard
   created_at
   updated_at
   time
+  name
+  twitter
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -52,6 +56,8 @@ class TalkDashboard < Administrate::BaseDashboard
   title
   description
   time
+  name
+  twitter
   ].freeze
 
   # COLLECTION_FILTERS
