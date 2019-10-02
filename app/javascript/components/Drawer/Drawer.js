@@ -94,7 +94,7 @@ const Drawer = ({
             Next
           </PrimaryButtons>
         </DrawerNav>
-        <span>{`Slide ${talkTimeSlotIndex + 1} of ${numberOfHours}`}</span>
+        <span>{`Page ${talkTimeSlotIndex + 1} of ${numberOfHours}`}</span>
       </CarouselContainer>
     );
   };
@@ -178,6 +178,7 @@ const CarouselContainer = styled.div`
     padding-top: 30px;
     padding-bottom: 15px;
     background: #f7f7f7;
+    font-weight: bold;
 
     @media only screen and (max-device-width: 420px) {
       padding-top: 10px;
