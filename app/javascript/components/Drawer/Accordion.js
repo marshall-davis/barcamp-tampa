@@ -112,6 +112,7 @@ Accordion.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   name: PropTypes.string,
+  currentHour: PropTypes.string,
   talkData: {
     title: PropTypes.string,
     description: PropTypes.string,
