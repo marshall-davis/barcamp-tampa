@@ -9,6 +9,9 @@ export const mockTalks = [
       email: 'sc@hyve.email',
       firstName: 'Sebastian',
       lastName: 'Castaldi',
+      facebook: 'LinnJS',
+      twitter: 'LinnJSDev',
+      linkedin: 'LinnJS',
     },
     room: {
       name: '111',

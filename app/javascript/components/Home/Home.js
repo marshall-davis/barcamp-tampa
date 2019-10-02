@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Fab from '@material-ui/core/Fab';
 import { mockTalks } from '../Drawer/mockTalks';
 import Drawer from '../Drawer/Drawer';
+import withStyles from '@material-ui/core/styles/withStyles';
 // import { useQuery } from "@apollo/react-hooks";
 // import { TALKS } from "../Drawer/quries";
 
@@ -42,18 +43,19 @@ const Home = () => {
         setTalkHour={setTalkTimeSlotIndex}
         talkTimeSlotIndex={talkTimeSlotIndex}
         numberOfHours={talkTimeSlots.length}
+        currentHour={currentTalkGroup}
       />
 
       <PlaceHolder>map goes here</PlaceHolder>
 
       <ButtonContainer>
-        <DrawerButton
+        <StyledButton
           onClick={() => setDrawerState(!drawerState)}
           color="primary"
           aria-label="add"
         >
-          Open
-        </DrawerButton>
+          Schedule
+        </StyledButton>
       </ButtonContainer>
     </HomeContainer>
   );
@@ -62,13 +64,13 @@ const Home = () => {
 export default Home;
 
 const HomeContainer = styled.div`
+  background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
   height: 100vh;
-  background: cornflowerblue;
 `;
 
 const PlaceHolder = styled.span`
@@ -81,7 +83,17 @@ const ButtonContainer = styled.div`
   right: 50px;
 `;
 
-const DrawerButton = styled(Fab)`
-  font-size: 16px;
-  color: red;
-`;
+const StyledButton = withStyles({
+  root: {
+    background: 'rgb(31, 150, 242)',
+    height: 100,
+    width: 100,
+    padding: '0 30px',
+    hover: {
+      background: 'red',
+    },
+  },
+  label: {
+    //
+  },
+})(Fab);
