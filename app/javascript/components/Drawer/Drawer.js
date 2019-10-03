@@ -21,17 +21,21 @@ const Drawer = ({
     const [reactSwipeRef, setReactSwipeEl] = useState(null);
     // const height = useWindowHeight({ heightOffset: 100 });
 
-    const talkSlides = Array.apply(null, Array(numberOfHours)).map(() => {
+    const talkPages = Array.apply(null, Array(numberOfHours)).map(() => {
       return (
-        <ListContainer key={uuid()}>
+        <div key={uuid()}>
           {talkData.map(talk => {
             return (
-              <ListItem key={talk.id}>
-                <Accordion talkData={talk} currentHour={currentHour} />
+              <ListItem key={uuid()}>
+                <Accordion
+                  key={uuid()}
+                  talkData={talk}
+                  currentHour={currentHour}
+                />
               </ListItem>
             );
           })}
-        </ListContainer>
+        </div>
       );
     });
     const slideStart =
@@ -66,7 +70,7 @@ const Drawer = ({
           swipeOptions={swipeOptions}
           ref={ref => setReactSwipeEl(ref)}
         >
-          {talkSlides}
+          {talkPages}
         </ReactSwipe>
 
         <DrawerNav>
@@ -113,11 +117,11 @@ Drawer.propTypes = {
   style: PropTypes.object,
   drawerState: PropTypes.bool,
   setDrawerState: PropTypes.func,
-  talkData: PropTypes.array,
   setTalkHour: PropTypes.func,
   talkTimeSlotIndex: PropTypes.number,
   numberOfHours: PropTypes.number,
   currentHour: PropTypes.string,
+  talkData: PropTypes.array,
 };
 
 const StyledDrawer = styled(SwipeableDrawer)`
@@ -138,7 +142,78 @@ const DrawerWrapper = styled.div`
 
   .carousel {
     width: 500px;
-    height: 100%;
+    height: 87vh;
+    overflow-y: scroll !important;
+    background: #b0d58a;
+    @media only screen and (max-device-height: 568px) {
+      height: 74vh;
+    }
+
+    // desktop queries
+    @media only screen and (max-height: 1240px) {
+      height: 84vh;
+    }
+
+    @media only screen and (max-height: 960px) {
+      height: 80vh;
+    }
+
+    @media only screen and (max-height: 1000px) {
+      height: 78vh;
+    }
+
+    @media only screen and (max-height: 800px) {
+      height: 75vh;
+    }
+
+    @media only screen and (max-height: 725px) {
+      height: 73vh;
+    }
+
+    @media only screen and (max-height: 650px) {
+      height: 70vh;
+    }
+
+    @media only screen and (max-height: 590px) {
+      height: 67vh;
+    }
+
+    @media only screen and (max-height: 530px) {
+      height: 65vh;
+    }
+
+    // mobile queries
+    @media only screen and (max-device-height: 1366px) {
+      height: 86vh;
+    }
+
+    @media only screen and (max-device-height: 1024px) {
+      height: 82vh;
+    }
+
+    @media only screen and (max-device-height: 840px) {
+      height: 82vh;
+    }
+
+    @media only screen and (max-device-height: 768px) {
+      height: 76vh;
+    }
+
+    @media only screen and (max-device-height: 740px) {
+      height: 80vh;
+    }
+
+    @media only screen and (max-device-height: 667px) {
+      height: 78vh;
+    }
+
+    @media only screen and (max-device-height: 640px) {
+      height: 76vh;
+    }
+
+    @media only screen and (max-device-width: 550px) {
+      width: 80%;
+    }
 
     @media only screen and (max-device-width: 520px) {
       width: 460px;
@@ -214,98 +289,13 @@ const DrawerNav = styled.div`
   }
 `;
 
-const ListContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  height: 86vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  background: #b0d58a;
-
-  // desktop queries
-  @media only screen and (max-height: 1240px) {
-    height: 84vh;
-  }
-
-  @media only screen and (max-height: 1115px) {
-    height: 80vh;
-  }
-
-  @media only screen and (max-height: 1000px) {
-    height: 78vh;
-  }
-
-  @media only screen and (max-height: 800px) {
-    height: 75vh;
-  }
-
-  @media only screen and (max-height: 725px) {
-    height: 73vh;
-  }
-
-  @media only screen and (max-height: 650px) {
-    height: 70vh;
-  }
-
-  @media only screen and (max-height: 590px) {
-    height: 67vh;
-  }
-
-  @media only screen and (max-height: 530px) {
-    height: 65vh;
-  }
-
-  // mobile queries
-  @media only screen and (max-device-height: 1366px) {
-    height: 82vh;
-  }
-
-  @media only screen and (max-device-height: 1024px) {
-    height: 82vh;
-  }
-
-  @media only screen and (max-device-height: 550px) {
-    width: 80%;
-  }
-
-  @media only screen and (max-device-width: 550px) {
-    width: 80%;
-  }
-
-  @media only screen and (max-device-height: 840px) {
-    height: 82vh;
-  }
-
-  @media only screen and (max-device-height: 768px) {
-    height: 76vh;
-  }
-
-  @media only screen and (max-device-height: 740px) {
-    height: 80vh;
-  }
-
-  @media only screen and (max-device-height: 667px) {
-    height: 78vh;
-  }
-
-  @media only screen and (max-device-height: 640px) {
-    height: 76vh;
-  }
-
-  @media only screen and (max-device-height: 568px) {
-    height: 74vh;
-  }
-`;
-
 const ListItem = styled.div`
   margin-top: 50px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: auto;
 
   &:last-child {
     margin-bottom: 50px;
