@@ -39,10 +39,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Accordion = ({ talkData, currentHour }) => {
-  console.log('talkData', talkData);
   const { title, description, speaker, room } = talkData;
-  console.log('data', talkData);
   const { firstName, lastName, twitter, facebook, linkedin } = speaker;
+
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
@@ -109,22 +108,25 @@ const Accordion = ({ talkData, currentHour }) => {
 export default Accordion;
 
 Accordion.propTypes = {
-  title: PropTypes.string,
+  currentHour: PropTypes.string,
   description: PropTypes.string,
   name: PropTypes.string,
-  currentHour: PropTypes.string,
-  talkData: {
-    title: PropTypes.string,
+  title: PropTypes.string,
+  talkData: PropTypes.shape({
     description: PropTypes.string,
     name: PropTypes.string,
+    title: PropTypes.string,
+    room: PropTypes.shape({
+      name: PropTypes.string,
+    }),
     speaker: PropTypes.shape({
+      facebook: PropTypes.string,
       firstName: PropTypes.string,
       lastName: PropTypes.string,
-      twitter: PropTypes.string,
-      facebook: PropTypes.string,
       linkedin: PropTypes.string,
+      twitter: PropTypes.string,
     }),
-  },
+  }),
 };
 
 const AccordionContainer = styled.div`

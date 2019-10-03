@@ -46,7 +46,8 @@ const Home = () => {
         currentHour={currentTalkGroup}
       />
 
-      <PlaceHolder>map goes here</PlaceHolder>
+      <PlaceHolder>Welcome, Sponsor, and CheckIn information</PlaceHolder>
+      <PlaceHolder>Goes Here!</PlaceHolder>
 
       <ButtonContainer>
         <StyledButton
