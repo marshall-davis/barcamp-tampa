@@ -50,13 +50,12 @@ class TalkDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-  user
-  room
   title
-  description
   time
+  room
   name
   twitter
+  description
   ].freeze
 
   # COLLECTION_FILTERS
@@ -74,7 +73,7 @@ class TalkDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how talks are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(talk)
-  #   "Talk ##{talk.id}"
-  # end
+  def display_resource(talk)
+    talk.title
+  end
 end
