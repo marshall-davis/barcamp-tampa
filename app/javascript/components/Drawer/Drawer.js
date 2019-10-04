@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import SwipeableDrawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import ReactSwipe from 'react-swipe';
-import Accordion from './Accordion';
+import Accordion from './components/Accordion';
 import withStyles from '@material-ui/core/styles/withStyles';
 const uuid = require('uuid/v1');
 

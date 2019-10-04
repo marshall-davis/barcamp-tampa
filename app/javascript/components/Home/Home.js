@@ -4,8 +4,10 @@ import Fab from '@material-ui/core/Fab';
 import { mockTalks } from '../Drawer/mockTalks';
 import Drawer from '../Drawer/Drawer';
 import withStyles from '@material-ui/core/styles/withStyles';
+import SponsorBanner from './components/SponsorBanner';
 // import { useQuery } from "@apollo/react-hooks";
 // import { TALKS } from "../Drawer/quries";
+import { petabyte, gigabyte, terabyte, academicPartners, communitySponsors, mediaPartners } from '../../../assets/images/sponsors';
 
 // this is where map will be
 const Home = () => {
@@ -45,6 +47,12 @@ const Home = () => {
         numberOfHours={talkTimeSlots.length}
         currentHour={currentTalkGroup}
       />
+      <SponsorBanner sponsors={petabyte} />
+      <SponsorBanner sponsors={terabyte} />
+      <SponsorBanner sponsors={gigabyte} />
+      <SponsorBanner sponsors={academicPartners} />
+      <SponsorBanner sponsors={communitySponsors} />
+      <SponsorBanner sponsors={mediaPartners} />
 
       <PlaceHolder>Welcome, Sponsor, and CheckIn information</PlaceHolder>
       <PlaceHolder>Goes Here!</PlaceHolder>
@@ -72,6 +80,8 @@ const HomeContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
 const PlaceHolder = styled.span`
