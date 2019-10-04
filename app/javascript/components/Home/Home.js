@@ -54,15 +54,58 @@ const Home = () => {
         numberOfHours={talkTimeSlots.length}
         currentHour={currentTalkGroup}
       />
-      <SponsorBanner sponsors={petabyte} />
-      <SponsorBanner sponsors={terabyte} />
-      <SponsorBanner sponsors={gigabyte} />
-      <SponsorBanner sponsors={academicPartners} />
-      <SponsorBanner sponsors={communitySponsors} />
-      <SponsorBanner sponsors={mediaPartners} />
+      <WelcomeContainer>
+        <Header>
+          <h1>Welcome to BarCamp 2019</h1>
+          <a
+            href="https://www.google.com/maps/dir//Keiser+University+tampa/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x88c2c20cbe97347d:0xa14466b5008394c1?sa=X&ved=2ahUKEwiR0vX1vIHlAhVROq0KHfKaAawQ9RcwFHoECAoQEA"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h3>Keiser University</h3>
+            <span>(click for directions)</span>
+          </a>
+        </Header>
 
-      <PlaceHolder>Welcome, Sponsor, and CheckIn information</PlaceHolder>
-      <PlaceHolder>Goes Here!</PlaceHolder>
+        <div className="schedule">
+          <h4>Schedule</h4>
+          <div>
+            <span>Check-in & breakfast </span>
+            <b> at 8:00 AM</b>
+          </div>
+          <div>
+            <span>Speaker sign-ups</span>
+            <b>at 8:00 AM</b>
+          </div>
+          <div>
+            <span>Welcome remarks</span>
+            <b>at 8:45 AM</b>
+          </div>
+          <div>
+            <span>Sessions begin</span>
+            <b>at 9:00 AM</b>
+          </div>
+          <div>
+            <span>Lunch</span> <b>12:00 PM to 1:00 PM</b>
+          </div>
+          <div>
+            <span>Wrap-up & raffles</span>
+            <b>at 4:00 PM</b>
+          </div>
+          <div>Afterparty -- T.B.D.</div>
+        </div>
+      </WelcomeContainer>
+
+      <SponsorContainer>
+        <h3>Thank You to our Sponsors!</h3>
+
+        <SponsorBanner sponsors={petabyte} />
+        <SponsorBanner sponsors={terabyte} />
+        <SponsorBanner sponsors={gigabyte} />
+        <SponsorBanner sponsors={academicPartners} />
+        <SponsorBanner sponsors={communitySponsors} />
+        <SponsorBanner sponsors={mediaPartners} />
+      </SponsorContainer>
 
       <ButtonContainer>
         <StyledButton
@@ -70,7 +113,7 @@ const Home = () => {
           color="primary"
           aria-label="add"
         >
-          Schedule
+          Talks
         </StyledButton>
       </ButtonContainer>
     </HomeContainer>
@@ -82,7 +125,7 @@ export default Home;
 const HomeContainer = styled.div`
   background: #fff;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   width: 100%;
@@ -91,8 +134,72 @@ const HomeContainer = styled.div`
   overflow-y: auto;
 `;
 
-const PlaceHolder = styled.span`
-  text-align: center;
+const Header = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+    color: black;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  span {
+    font-size: 14px;
+    font-weight: bold;
+  }
+`;
+
+const WelcomeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .schedule {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h4 {
+      margin: 10px 0;
+    }
+
+    div {
+      margin-top: 10px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      b {
+        margin-left: 5px;
+      }
+    }
+  }
+`;
+
+const SponsorContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  margin-top: 40px;
+  
+  h3 {
+  margin: 0;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -107,9 +214,6 @@ const StyledButton = withStyles({
     height: 100,
     width: 100,
     padding: '0 30px',
-    hover: {
-      background: 'red',
-    },
   },
   label: {
     //

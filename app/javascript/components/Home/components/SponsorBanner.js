@@ -14,14 +14,13 @@ const SponsorBanner = ({ sponsors }) => {
 };
 
 SponsorBanner.propTypes = {
-  sponsors: PropTypes.shape({
+  sponsors: PropTypes.array,
     logo: PropTypes.string,
     map: PropTypes.shape({
       sponsor: PropTypes.shape({
         logo: PropTypes.string,
       }),
     }),
-  }),
 };
 
 export default SponsorBanner;
@@ -32,7 +31,7 @@ const BannerContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   overflow: no-content;
-  margin-right: 5px;
+  margin: 10px 0;
 
   ${props =>
     props.slide &&
@@ -47,10 +46,6 @@ const BannerContainer = styled.div`
     max-height: 125px;
     margin-right: 20px;
     align-self: center;
-  }
-  &:hover {
-    transform: scale(1.07);
-    transition: 3s;
   }
 `;
 
