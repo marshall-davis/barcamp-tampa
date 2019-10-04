@@ -48,23 +48,14 @@ const Drawer = ({
       disableScroll: false,
       continuous: true,
       callback() {
-        // if (reactSwipeRef.Pos) {
         setTimeout(() => {
           setTalkHour(reactSwipeRef.getPos());
-        }, 300);
-        // }
-      },
-      transitionEnd() {
-        console.log('ended transition');
+        }, 200);
       },
     };
 
     return (
       <CarouselContainer>
-        <HeaderContainer>
-          <h3>{`${currentHour}:00`}</h3>
-        </HeaderContainer>
-
         <ReactSwipe
           className="carousel"
           swipeOptions={swipeOptions}
@@ -104,6 +95,9 @@ const Drawer = ({
   return (
     <StyledDrawer anchor="right" open={drawerState} onClose={() => null}>
       <DrawerWrapper>
+        <HeaderContainer>
+          <h3>{`${currentHour}:00`}</h3>
+        </HeaderContainer>
         <Carousel currentHout={currentHour} />
       </DrawerWrapper>
     </StyledDrawer>
@@ -145,9 +139,6 @@ const DrawerWrapper = styled.div`
     height: 87vh;
     overflow-y: scroll !important;
     background: #b0d58a;
-    @media only screen and (max-device-height: 568px) {
-      height: 74vh;
-    }
 
     // desktop queries
     @media only screen and (max-height: 1240px) {
@@ -184,31 +175,11 @@ const DrawerWrapper = styled.div`
 
     // mobile queries
     @media only screen and (max-device-height: 1366px) {
-      height: 86vh;
+      height: 90vh;
     }
 
-    @media only screen and (max-device-height: 1024px) {
-      height: 82vh;
-    }
-
-    @media only screen and (max-device-height: 840px) {
-      height: 82vh;
-    }
-
-    @media only screen and (max-device-height: 768px) {
-      height: 76vh;
-    }
-
-    @media only screen and (max-device-height: 740px) {
-      height: 80vh;
-    }
-
-    @media only screen and (max-device-height: 667px) {
-      height: 78vh;
-    }
-
-    @media only screen and (max-device-height: 640px) {
-      height: 76vh;
+    @media only screen and (max-device-height: 568px) {
+      height: 74vh;
     }
 
     @media only screen and (max-device-width: 550px) {
@@ -242,11 +213,6 @@ const CarouselContainer = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  .accordion--container {
-    width: 300px;
-    padding: 0 30px;
-  }
-
   > span {
     padding-top: 30px;
     padding-bottom: 15px;
@@ -270,6 +236,30 @@ const HeaderContainer = styled.div`
   text-align: center;
   box-shadow: 0 2px 20px -2px rgba(0, 0, 0, 0.2);
   z-index: 20;
+  width: 500px;
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  @media only screen and (max-device-width: 520px) {
+    width: 460px;
+  }
+
+  @media only screen and (max-device-width: 500px) {
+    width: 420px;
+  }
+
+  @media only screen and (max-device-width: 450px) {
+    width: 400px;
+  }
+
+  @media only screen and (max-device-width: 400px) {
+    width: 350px;
+  }
+
+  @media only screen and (max-device-width: 350px) {
+    width: 300px;
+  }
 `;
 
 const DrawerNav = styled.div`
@@ -296,6 +286,16 @@ const ListItem = styled.div`
   justify-content: center;
   align-items: center;
   height: auto;
+
+  &:first-child {
+    margin-top: 80px;
+  }
+
+  @media only screen and (max-device-height: 1000px) {
+    &:first-child {
+      margin-top: 120px;
+    }
+  }
 
   &:last-child {
     margin-bottom: 50px;
