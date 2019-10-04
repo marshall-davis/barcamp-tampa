@@ -7,7 +7,14 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import SponsorBanner from './components/SponsorBanner';
 // import { useQuery } from "@apollo/react-hooks";
 // import { TALKS } from "../Drawer/quries";
-import { petabyte, gigabyte, terabyte, academicPartners, communitySponsors, mediaPartners } from '../../../assets/images/sponsors';
+import {
+  petabyte,
+  gigabyte,
+  terabyte,
+  academicPartners,
+  communitySponsors,
+  mediaPartners,
+} from '../../../assets/images/sponsors';
 
 // this is where map will be
 const Home = () => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes, css } from 'styled-components';
+import PropTypes from 'prop-types';
 
 const SponsorBanner = ({ sponsors }) => {
   const slide = true;
@@ -10,6 +11,17 @@ const SponsorBanner = ({ sponsors }) => {
       })}
     </BannerContainer>
   );
+};
+
+SponsorBanner.propTypes = {
+  sponsors: PropTypes.shape({
+    logo: PropTypes.string,
+    map: PropTypes.shape({
+      sponsor: PropTypes.shape({
+        logo: PropTypes.string,
+      }),
+    }),
+  }),
 };
 
 export default SponsorBanner;
@@ -52,12 +64,12 @@ const slideLeftAnimation = keyframes`
   }
   `;
 
-const slideRightAnimation = keyframes`  
-  0% {
-      transform: translateY(100%);   
-  }
-  
-    100% {
-      transform: translateY(-100%);   
-  }
-  `;
+// const slideRightAnimation = keyframes`
+//   0% {
+//       transform: translateY(100%);
+//   }
+//
+//     100% {
+//       transform: translateY(-100%);
+//   }
+//   `;
