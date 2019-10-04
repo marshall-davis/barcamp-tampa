@@ -63,7 +63,6 @@ const Accordion = ({ talkData, currentHour }) => {
         >
           <h4 className="accordion-title">{title}</h4>
           <h5>{`Room #${room.name}`}</h5>
-          {/*<AccordionDescription>{`${time}:00`}</AccordionDescription>*/}
         </ExpansionPanelSummary>
 
         <ExpansionPanelDetails>
@@ -75,27 +74,35 @@ const Accordion = ({ talkData, currentHour }) => {
             </div>
 
             <div className="social-media">
-              <a
-                href={`https://twitter.com/${twitter}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Icon color={'#33CCFF'} icon={faTwitterSquare} />
-              </a>
-              <a
-                href={`https://www.linkedin.com/in/${linkedin}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Icon color={'#4875B4'} icon={faLinkedin} />
-              </a>
-              <a
-                href={`https://www.facebook.com/${facebook}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Icon color={'#3b5998'} icon={faFacebookSquare} />
-              </a>
+              {true && (
+                <a
+                  href={`https://twitter.com/${twitter}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon color={'#33CCFF'} icon={faTwitterSquare} />
+                </a>
+              )}
+
+              {linkedin && (
+                <a
+                  href={`https://www.linkedin.com/in/${linkedin}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon color={'#4875B4'} icon={faLinkedin} />
+                </a>
+              )}
+
+              {linkedin && (
+                <a
+                  href={`https://www.facebook.com/${facebook}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon color={'#3b5998'} icon={faFacebookSquare} />
+                </a>
+              )}
             </div>
             <ActionButton color="secondary">Attend Talk</ActionButton>
           </AccordionContent>
