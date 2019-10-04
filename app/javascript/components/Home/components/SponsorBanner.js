@@ -15,12 +15,12 @@ const SponsorBanner = ({ sponsors }) => {
 
 SponsorBanner.propTypes = {
   sponsors: PropTypes.array,
-    logo: PropTypes.string,
-    map: PropTypes.shape({
-      sponsor: PropTypes.shape({
-        logo: PropTypes.string,
-      }),
+  logo: PropTypes.string,
+  map: PropTypes.shape({
+    sponsor: PropTypes.shape({
+      logo: PropTypes.string,
     }),
+  }),
 };
 
 export default SponsorBanner;
