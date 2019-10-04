@@ -63,7 +63,7 @@ class FloorDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how floors are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(floor)
-  #   "Floor ##{floor.id}"
-  # end
+  def display_resource(floor)
+    "#{floor.location.name} Floor #{floor.number}"
+  end
 end
