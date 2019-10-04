@@ -196,9 +196,9 @@ const SponsorContainer = styled.div`
   width: 100%;
   flex-direction: column;
   margin-top: 40px;
-  
+
   h3 {
-  margin: 0;
+    margin: 0;
   }
 `;
 
