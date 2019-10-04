@@ -48,10 +48,15 @@ module Types
 
     field :talks, [TalkType], null: true do
       description 'List talks'
+      argument :year, Int, required: false
     end
 
-    def talks
-      Talk.all
+    def talks(**args)
+      if args[:year]
+        Talk.where('extract(year from time) = ?', args[:year]).all
+      else
+        Talk.all
+      end
     end
   end
 end
