@@ -9,6 +9,13 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application' %>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107412649-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-107412649-6');
+  </script>
 </head>
 
 <body>
