@@ -16,7 +16,17 @@ module Backdoor
              end
       hour += 4
       resource.time = "#{now.year}-#{now.month}-#{now.day} #{hour}:00"
-      resource.save
+
+      if resource.save
+        redirect_to(
+            [namespace, resource],
+            notice: translate_with_resource('update.success')
+        )
+      else
+        render :new, locals: {
+            page: Administrate::Page::Form.new(dashboard, resource),
+        }
+      end
     end
 
     def create
