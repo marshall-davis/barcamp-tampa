@@ -11,15 +11,20 @@ module Backdoor
 
     def create
       now = Time.now
+      hour = if resource_params[:time].to_i < 9
+               resource_params[:time].to_i + 12
+             else
+               resource_params[:time].to_i
+             end
       resource = resource_class.new(resource_params)
       authorize_resource(resource)
-      resource.time = "#{now.year}-#{now.month}-#{now.day} #{resource_params[:time]}:00"
+      resource.time = "#{now.year}-#{now.month}-#{now.day} #{hour}:00"
 
       if resource.save
         redirect_to(
             [namespace, resource],
             notice: translate_with_resource("create.success"),
-            )
+        )
       else
         render :new, locals: {
             page: Administrate::Page::Form.new(dashboard, resource),
