@@ -29,12 +29,12 @@ export const CheckinContent = () => {
 
           <div className="sponsor">
             <div>
-              <h4>🍩 Donuts 🍩 sponsored by SourceToad</h4>
+              <h4>🍩 Donuts sponsored by SourceToad 🍩</h4>
               <img src={sourceToad} alt="SourceToad Logo" />
             </div>
 
             <div>
-              <h4>☕️ Coffee ☕️ sponsored by Change Her Story</h4>
+              <h4>☕️ Coffee sponsored by Change Her Story ☕️</h4>
               <img src={chs} alt="SourceToad Logo" />
             </div>
           </div>
@@ -63,7 +63,7 @@ export const LunchContent = () => {
 
           <div className="sponsor">
             <div>
-              <h4>🍺 Beverages 🍺 sponsored by Redhat</h4>
+              <h4>🍺 Beverages sponsored by Redhat 🍺</h4>
               <img src={redHat} alt="Redhat Logo" />
             </div>
           </div>
@@ -95,7 +95,7 @@ export const WrapUpContent = () => {
 
           <div className="sponsor">
             <div>
-              <h4>🎟 Raffle 🎟 sponsors</h4>
+              <h4>🎟 Raffle sponsors 🎟</h4>
               <img src={BarCampSquare} alt="BarCamp Logo" />
             </div>
           </div>
@@ -119,7 +119,7 @@ export const AfterpartyContent = () => {
             <h3>Come hangout with us at the Afterparty!</h3>
             <h4>Taking place at Tampa Joe's</h4>
 
-            <div className='buttons'>
+            <div className="buttons">
               <DirectionsButton
                 onClick={() =>
                   window.open(
@@ -144,7 +144,7 @@ export const AfterpartyContent = () => {
 
           <div className="sponsor">
             <div>
-              <h4>🍻 Afterparty 🍻 sponsored by SourceToad</h4>
+              <h4>🍻 Afterparty sponsored by SourceToad 🍻</h4>
               <img src={sourceToad} alt="SourceToad Logo" />
             </div>
           </div>
@@ -176,11 +176,11 @@ const ContentContainer = styled.div`
       margin: 20px 0;
     }
   }
-  
+
   .buttons {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
