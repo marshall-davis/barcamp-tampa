@@ -82,7 +82,7 @@ const Home = () => {
           <DirectionsButton
             onClick={() =>
               window.open(
-                'https://www.google.com/maps/dir//Keiser+University+tampa/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x88c2c20cbe97347d:0xa14466b5008394c1?sa=X&ved=2ahUKEwiR0vX1vIHlAhVROq0KHfKaAawQ9RcwFHoECAoQEA'
+                'https://www.google.com/maps/place/Keiser+University+Tampa/@28.0248903,-82.5294327,15z/data=!4m2!3m1!1s0x0:0xa14466b5008394c1?sa=X&ved=2ahUKEwj_9di51YXlAhXqqlkKHbgsCf4Q_BIwE3oECAoQCA'
               )
             }
             color="primary"
@@ -126,7 +126,7 @@ const Home = () => {
             <DirectionsButton
               onClick={() =>
                 window.open(
-                  "https://www.google.com/maps/dir/27.7819919,-82.6416247/Tampa+Joe's,+9316+Anderson+Rd,+Tampa,+FL+33634/@27.906128,-82.6649352,12z/data=!3m1!4b1!4m17!1m6!3m5!1s0x88c2c1c710cdac71:0xb62899a3c700c6eb!2sTampa+Joe's!8m2!3d28.0344974!4d-82.5421181!4m9!1m1!4e1!1m5!1m1!1s0x88c2c1c710cdac71:0xb62899a3c700c6eb!2m2!1d-82.5421181!2d28.0344974!3e0"
+                  "https://www.google.com/maps/place/Tampa+Joe's/@28.0344974,-82.5421181,15z/data=!4m2!3m1!1s0x0:0xb62899a3c700c6eb?sa=X&ved=2ahUKEwjGqt7T1YXlAhWn1lkKHTdVDgEQ_BIwFHoECA0QCA"
                 )
               }
               color="primary"
