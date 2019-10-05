@@ -34,7 +34,6 @@ const Drawer = ({
       currentHour === '12' ||
       currentHour === '4' ||
       currentHour === '5';
-    console.log('eventHour', eventHour);
 
     const talkAccordions =
       talkData &&
@@ -249,16 +248,30 @@ const HeaderContainer = styled.div`
   right: 0;
 
   h3 {
-    width: 100px;
+    width: 150px;
   }
 
   img {
     margin-left: 10px;
-    width: 100px;
+    width: 150px;
   }
 
   span {
-    width: 100px;
+    width: 150px;
+  }
+
+  @media only screen and (max-device-height: 800px) {
+    h3 {
+      width: 100px;
+    }
+
+    img {
+      width: 100px;
+    }
+
+    span {
+      width: 100px;
+    }
   }
 
   @media only screen and (max-device-width: 520px) {
@@ -302,7 +315,7 @@ const DrawerNav = styled.div`
 
 const ListItem = styled.div`
   font-family: 'Open Sans', Helvetica, Arial, Verdana, sans-serif;
-  margin-top: 50px;
+  margin-top: 60px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -310,7 +323,7 @@ const ListItem = styled.div`
   height: auto;
 
   &:first-child {
-    margin-top: 110px;
+    margin-top: 130px;
   }
 
   @media only screen and (max-device-height: 1000px) {

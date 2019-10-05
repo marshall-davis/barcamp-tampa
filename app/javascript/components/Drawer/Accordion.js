@@ -41,7 +41,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Accordion = ({ talkData, currentHour }) => {
-  console.log('talkData', talkData);
   const { title, description, speaker, room, id } = talkData;
   const { firstName, lastName, twitter, facebook, linkedin } = speaker;
   const [isExpanded, setExpanded] = useState(false);

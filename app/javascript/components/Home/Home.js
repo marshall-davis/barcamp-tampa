@@ -25,7 +25,6 @@ const Home = () => {
   if (error) console.warn('TALKS Query Error: ', error);
   const [drawerState, setDrawerState] = React.useState(false);
   const [isSliding, setSliding] = React.useState(true);
-  console.log('isSliding', isSliding);
   const talkTimeSlots = ['8', '9', '10', '11', '12', '1', '2', '3', '4', '5'];
   const [talkTimeSlotIndex, setTalkTimeSlotIndex] = useState(0);
   const [realTalk, setTalks] = useState([]);
@@ -58,7 +57,6 @@ const Home = () => {
   // const talks = makeTalkMap({ talks: mockTalks, talkTimeSlots });
   const realTalks =
     realTalk.length > 0 ? makeTalkMap({ talks: realTalk, talkTimeSlots }) : [];
-  if (realTalk.length) console.log('realTalks', realTalks);
 
   return (
     <HomeContainer>
