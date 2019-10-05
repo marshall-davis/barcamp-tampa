@@ -19,6 +19,7 @@ module Backdoor
       resource = resource_class.new(resource_params)
       authorize_resource(resource)
       resource.time = "#{now.year}-#{now.month}-#{now.day} #{hour}:00"
+      resource.user_id = 1
 
       if resource.save
         redirect_to(
