@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Fab from '@material-ui/core/Fab';
+import Button from '@material-ui/core/Button';
 import { mockTalks } from '../Drawer/mockTalks';
 import Drawer from '../Drawer/Drawer';
 import withStyles from '@material-ui/core/styles/withStyles';
 import SponsorBanner from './components/SponsorBanner';
+import BarCampTechNova from '../../../assets/images/barcamp-square.png';
 // import { useQuery } from "@apollo/react-hooks";
 // import { TALKS } from "../Drawer/quries";
 import {
@@ -57,13 +59,24 @@ const Home = () => {
       <WelcomeContainer>
         <Header>
           <h1>Welcome to BarCamp 2019</h1>
+          <img src={BarCampTechNova} alt="barcamp logo" />
+
           <a
             href="https://www.google.com/maps/dir//Keiser+University+tampa/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x88c2c20cbe97347d:0xa14466b5008394c1?sa=X&ved=2ahUKEwiR0vX1vIHlAhVROq0KHfKaAawQ9RcwFHoECAoQEA"
             target="_blank"
             rel="noopener noreferrer"
           >
             <h3>Keiser University</h3>
-            <span>(click for directions)</span>
+            <span>5002 W Waters Ave, Tampa, FL 33634</span>
+            <a
+              href="https://www.google.com/maps/dir//Keiser+University+tampa/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x88c2c20cbe97347d:0xa14466b5008394c1?sa=X&ved=2ahUKEwiR0vX1vIHlAhVROq0KHfKaAawQ9RcwFHoECAoQEA"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <DirectionsButton color="primary" variant="contained">
+                Directions
+              </DirectionsButton>
+            </a>
           </a>
         </Header>
 
@@ -92,29 +105,66 @@ const Home = () => {
             <span>Wrap-up & raffles</span>
             <b>at 4:00 PM</b>
           </div>
-          <div>Afterparty -- T.B.D.</div>
+          <a
+            href="https://www.google.com/maps/dir/Keiser+University+Tampa,+West+Waters+Avenue,+Tampa,+FL/tampa+joes/@28.0276851,-82.5456225,15z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x88c2c20cbe97347d:0xa14466b5008394c1!2m2!1d-82.5294327!2d28.0248903!1m5!1m1!1s0x88c2c1c710cdac71:0xb62899a3c700c6eb!2m2!1d-82.5421181!2d28.0344974"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="afterparty">
+              <h4>Afterparty</h4>
+              <h5>TAMPA JOES</h5>
+              <span>316 Anderson Rd, Tampa, FL 33634 </span>
+              <a
+                href="https://www.google.com/maps/dir/Keiser+University+Tampa,+West+Waters+Avenue,+Tampa,+FL/tampa+joes/@28.0276851,-82.5456225,15z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x88c2c20cbe97347d:0xa14466b5008394c1!2m2!1d-82.5294327!2d28.0248903!1m5!1m1!1s0x88c2c1c710cdac71:0xb62899a3c700c6eb!2m2!1d-82.5421181!2d28.0344974"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <DirectionsButton color="primary" variant="contained">
+                  Directions
+                </DirectionsButton>
+              </a>
+              <a
+                href="http://tampajoes.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MenuButton color="secondary" variant="contained">
+                  MENU
+                </MenuButton>
+              </a>
+            </div>
+          </a>
         </div>
       </WelcomeContainer>
 
       <SponsorContainer>
         <h3>Thank You to our Sponsors!</h3>
-
-        <SponsorBanner sponsors={petabyte} />
-        <SponsorBanner sponsors={terabyte} />
-        <SponsorBanner sponsors={gigabyte} />
-        <SponsorBanner sponsors={academicPartners} />
-        <SponsorBanner sponsors={communitySponsors} />
-        <SponsorBanner sponsors={mediaPartners} />
+        <div className="sponsor-wrapper">
+          <SponsorBanner header="Petabyte Sponsors" sponsors={petabyte} />
+          <SponsorBanner header="Terabyte Sponsors" sponsors={terabyte} />
+          <SponsorBanner header="Gigabyte Sponsors" sponsors={gigabyte} />
+          <SponsorBanner
+            header="Academic Sponsors"
+            sponsors={academicPartners}
+          />
+          <SponsorBanner
+            header="Community Sponsors"
+            sponsors={communitySponsors}
+          />
+          <SponsorBanner header="Media Sponsors" sponsors={mediaPartners} />
+        </div>
       </SponsorContainer>
 
       <ButtonContainer>
-        <StyledButton
-          onClick={() => setDrawerState(!drawerState)}
-          color="primary"
-          aria-label="add"
-        >
-          Talks
-        </StyledButton>
+        {false && (
+          <StyledButton
+            onClick={() => setDrawerState(!drawerState)}
+            color="primary"
+            aria-label="add"
+          >
+            Talks
+          </StyledButton>
+        )}
       </ButtonContainer>
     </HomeContainer>
   );
@@ -123,7 +173,7 @@ const Home = () => {
 export default Home;
 
 const HomeContainer = styled.div`
-  background: #fff;
+  font-family: 'Open Sans', Helvetica, Arial, Verdana, sans-serif;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -150,27 +200,41 @@ const Header = styled.div`
     color: black;
   }
 
+  h1 {
+    margin-bottom: 40px;
+  }
+
+  img {
+    margin-bottom: 40px;
+  }
+
   h3 {
     margin: 0;
   }
 
   span {
     font-size: 14px;
-    font-weight: bold;
   }
 `;
 
 const WelcomeContainer = styled.div`
+  font-family: inherit;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
 
   .schedule {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 15px 0;
 
     h4 {
       margin: 10px 0;
@@ -187,6 +251,28 @@ const WelcomeContainer = styled.div`
       }
     }
   }
+
+  .afterparty {
+    display: flex;
+    flex-direction: column;
+
+    h5 {
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    span {
+      font-size: 14px;
+    }
+  }
+
+  @media only screen and (max-device-height: 850px) {
+    h1 {
+      font-size: 1.4em;
+      text-align: center;
+      margin-top: 40px;
+    }
+  }
 `;
 
 const SponsorContainer = styled.div`
@@ -195,10 +281,15 @@ const SponsorContainer = styled.div`
   align-items: center;
   width: 100%;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: 60px;
 
   h3 {
     margin: 0;
+  }
+  .sponsor-wrapper {
+    div {
+      margin-top: 50px;
+    }
   }
 `;
 
@@ -214,8 +305,52 @@ const StyledButton = withStyles({
     height: 100,
     width: 100,
     padding: '0 30px',
+    fontFamily:
+      'font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;',
   },
   label: {
     //
   },
 })(Fab);
+
+const DirectionsButton = withStyles({
+  root: {
+    background: 'rgb(38, 177, 97)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(41,41,41,.25)',
+    marginTop: '20px',
+    fontFamily:
+      'font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;',
+    '@media (max-height: 570px)': {
+      padding: '0 20px',
+    },
+  },
+  label: {
+    //
+  },
+})(Button);
+
+const MenuButton = withStyles({
+  root: {
+    background: 'rgb(31, 150, 242)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(41,41,41,.25)',
+    marginTop: '20px',
+    fontFamily:
+      'font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;',
+    '@media (max-height: 570px)': {
+      padding: '0 20px',
+    },
+  },
+  label: {
+    //
+  },
+})(Button);
