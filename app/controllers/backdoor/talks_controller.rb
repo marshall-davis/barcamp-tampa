@@ -18,7 +18,8 @@ module Backdoor
              end
       resource = resource_class.new(resource_params)
       authorize_resource(resource)
-      resource.time = "#{now.year}-#{now.month}-#{now.day} #{hour}:00"
+      # This is a hack, a dirty hack for timezones
+      resource.time = "#{now.year}-#{now.month}-#{now.day} #{hour + 5}:00"
       resource.user_id = 1
 
       if resource.save
