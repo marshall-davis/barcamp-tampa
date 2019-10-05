@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import { format } from 'date-fns';
 import Drawer from '../Drawer/Drawer';
 import withStyles from '@material-ui/core/styles/withStyles';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 import SponsorBanner from './SponsorBanner';
 import { BarCampSquare } from '../../../assets/images';
 import { useQuery } from '@apollo/react-hooks';
@@ -22,6 +24,8 @@ const Home = () => {
   const { loading, error, data } = useQuery(TALKS_BY_YEAR);
   if (error) console.warn('TALKS Query Error: ', error);
   const [drawerState, setDrawerState] = React.useState(false);
+  const [isSliding, setSliding] = React.useState(true);
+  console.log('isSliding', isSliding);
   const talkTimeSlots = ['8', '9', '10', '11', '12', '1', '2', '3', '4', '5'];
   const [talkTimeSlotIndex, setTalkTimeSlotIndex] = useState(0);
   const [realTalk, setTalks] = useState([]);
@@ -144,10 +148,33 @@ const Home = () => {
 
       <SponsorContainer>
         <h3>Thank You to our Sponsors!</h3>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={isSliding}
+              onChange={() => setSliding(!isSliding)}
+              color="primary"
+            />
+          }
+          label="Toggle Sliding Banners"
+        />
+
         <div className="sponsor-wrapper">
-          <SponsorBanner header="Petabyte Sponsors" sponsors={petabyte} />
-          <SponsorBanner header="Terabyte Sponsors" sponsors={terabyte} />
-          <SponsorBanner header="Gigabyte Sponsors" sponsors={gigabyte} />
+          <SponsorBanner
+            isSliding={isSliding}
+            header="Petabyte Sponsors"
+            sponsors={petabyte}
+          />
+          <SponsorBanner
+            isSliding={isSliding}
+            header="Terabyte Sponsors"
+            sponsors={terabyte}
+          />
+          <SponsorBanner
+            isSliding={isSliding}
+            header="Gigabyte Sponsors"
+            sponsors={gigabyte}
+          />
           <SponsorBanner
             header="Academic Sponsors"
             sponsors={academicPartners}
@@ -160,17 +187,15 @@ const Home = () => {
         </div>
       </SponsorContainer>
 
-      <ButtonContainer>
-        {true && (
-          <StyledButton
-            onClick={() => setDrawerState(!drawerState)}
-            color="primary"
-            aria-label="add"
-          >
-            Talks
-          </StyledButton>
-        )}
-      </ButtonContainer>
+      {true && (
+        <TalksButton
+          onClick={() => setDrawerState(!drawerState)}
+          color="primary"
+          aria-label="add"
+        >
+          Talks
+        </TalksButton>
+      )}
     </HomeContainer>
   );
 };
@@ -186,6 +211,7 @@ const HomeContainer = styled.div`
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  padding-bottom: 100px;
 `;
 
 const Header = styled.div`
@@ -297,18 +323,16 @@ const SponsorContainer = styled.div`
   }
 `;
 
-const ButtonContainer = styled.div`
-  position: absolute;
-  bottom: 50px;
-  right: 50px;
-`;
-
-const StyledButton = withStyles({
+const TalksButton = withStyles({
   root: {
     background: 'rgb(31, 150, 242)',
-    height: 100,
-    width: 100,
+    height: 70,
+    width: 70,
     padding: '0 30px',
+    position: 'fixed',
+    bottom: '0',
+    right: '0',
+    margin: '10px',
     fontFamily:
       'font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;',
   },

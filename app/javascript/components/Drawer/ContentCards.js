@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import CheckinIcon from '../../../assets/images/checkin.png';
-import LunchIcon from '../../../assets/images/lunch.png';
 import AfterpartyIcon from '../../../assets/images/afterparty.png';
+import CheckinIcon from '../../../assets/images/checkin.png';
 import FeedbackIcon from '../../../assets/images/feedback.png';
-import { sourceToad, redHat } from '../../../assets/images/sponsors/petabyte';
+import LunchIcon from '../../../assets/images/lunch.png';
 import { BarCampSquare } from '../../../assets/images';
 import { chs } from '../../../assets/images/sponsors/terabyte';
 import { DirectionsButton, MenuButton } from '../Home/Home';
+import { sourceToad, redHat } from '../../../assets/images/sponsors/petabyte';
 
 export const CheckinContent = () => {
   const classes = useStyles();
