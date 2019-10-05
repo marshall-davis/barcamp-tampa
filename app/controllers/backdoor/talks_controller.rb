@@ -16,6 +16,7 @@ module Backdoor
              else
                resource_params[:time].to_i
              end
+      hour += 4
       resource = resource_class.new(resource_params)
       authorize_resource(resource)
       # This is a hack, a dirty hack for timezones
