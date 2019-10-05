@@ -142,6 +142,13 @@ const Home = () => {
             >
               MENU
             </MenuButton>
+
+            <SurveyButton
+              onClick={() => window.open('https://fdier.co/0g0w3N')}
+              color="primary"
+            >
+              Feedback
+            </SurveyButton>
           </div>
         </div>
       </WelcomeContainer>
@@ -335,6 +342,26 @@ const TalksButton = withStyles({
     bottom: '0',
     right: '0',
     margin: '10px',
+    fontFamily:
+      'font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;',
+  },
+  label: {
+    //
+  },
+})(Fab);
+
+const SurveyButton = withStyles({
+  root: {
+    background: '#ecdc62',
+    height: 100,
+    width: 100,
+    padding: '0 30px',
+    position: 'fixed',
+    bottom: '0',
+    right: '120px',
+    margin: '10px',
+    zIndex: '25',
+    borderRadius: '8px',
     fontFamily:
       'font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;',
   },
