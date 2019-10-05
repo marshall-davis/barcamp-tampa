@@ -119,11 +119,13 @@ Drawer.propTypes = {
 };
 
 const StyledDrawer = styled(SwipeableDrawer)`
+  font-family: 'Open Sans', Helvetica, Arial, Verdana, sans-serif;
   color: #2e2f30;
   width: 100%;
 `;
 
 const DrawerWrapper = styled.div`
+  font-family: 'Open Sans', Helvetica, Arial, Verdana, sans-serif;
   color: #2e2f30;
   width: 100%;
   display: flex;
@@ -135,43 +137,11 @@ const DrawerWrapper = styled.div`
   overflow: hidden;
 
   .carousel {
+    font-family: 'Open Sans', Helvetica, Arial, Verdana, sans-serif;
     width: 500px;
-    height: 87vh;
+    height: 90vh;
     overflow-y: scroll !important;
     background: #b0d58a;
-
-    // desktop queries
-    @media only screen and (max-height: 1240px) {
-      height: 84vh;
-    }
-
-    @media only screen and (max-height: 960px) {
-      height: 80vh;
-    }
-
-    @media only screen and (max-height: 1000px) {
-      height: 78vh;
-    }
-
-    @media only screen and (max-height: 800px) {
-      height: 75vh;
-    }
-
-    @media only screen and (max-height: 725px) {
-      height: 73vh;
-    }
-
-    @media only screen and (max-height: 650px) {
-      height: 70vh;
-    }
-
-    @media only screen and (max-height: 590px) {
-      height: 67vh;
-    }
-
-    @media only screen and (max-height: 530px) {
-      height: 65vh;
-    }
 
     // mobile queries
     @media only screen and (max-device-height: 1366px) {
@@ -179,7 +149,7 @@ const DrawerWrapper = styled.div`
     }
 
     @media only screen and (max-device-height: 568px) {
-      height: 74vh;
+      height: 90vh;
     }
 
     @media only screen and (max-device-width: 550px) {
@@ -212,6 +182,7 @@ const CarouselContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family: inherit;
 
   > span {
     padding-top: 30px;
@@ -227,6 +198,7 @@ const CarouselContainer = styled.div`
 `;
 
 const HeaderContainer = styled.div`
+  font-family: inherit;
   background: #f7f7f7;
   display: flex;
   flex-direction: row;
@@ -263,6 +235,7 @@ const HeaderContainer = styled.div`
 `;
 
 const DrawerNav = styled.div`
+  font-family: inherit;
   background: #f7f7f7;
   display: flex;
   flex-direction: row;
@@ -280,6 +253,7 @@ const DrawerNav = styled.div`
 `;
 
 const ListItem = styled.div`
+  font-family: 'Open Sans', Helvetica, Arial, Verdana, sans-serif;
   margin-top: 50px;
   width: 100%;
   display: flex;
@@ -288,7 +262,7 @@ const ListItem = styled.div`
   height: auto;
 
   &:first-child {
-    margin-top: 80px;
+    margin-top: 110px;
   }
 
   @media only screen and (max-device-height: 1000px) {
@@ -311,6 +285,8 @@ const PrimaryButtons = withStyles({
     height: 48,
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(41,41,41,.25)',
+    fontFamily:
+      'font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;',
     '@media (max-height: 570px)': {
       padding: '0 20px',
     },
@@ -329,6 +305,8 @@ const CloseButton = withStyles({
     height: 48,
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(41,41,41,.25)',
+    fontFamily:
+      'font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;',
     '@media (max-height: 570px)': {
       padding: '0 20px',
     },
