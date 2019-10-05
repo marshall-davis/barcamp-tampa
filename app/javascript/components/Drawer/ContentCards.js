@@ -119,25 +119,27 @@ export const AfterpartyContent = () => {
             <h3>Come hangout with us at the Afterparty!</h3>
             <h4>Taking place at Tampa Joe's</h4>
 
-            <DirectionsButton
-              onClick={() =>
-                window.open(
-                  "https://www.google.com/maps/dir/27.7819919,-82.6416247/Tampa+Joe's,+9316+Anderson+Rd,+Tampa,+FL+33634/@27.906128,-82.6649352,12z/data=!3m1!4b1!4m17!1m6!3m5!1s0x88c2c1c710cdac71:0xb62899a3c700c6eb!2sTampa+Joe's!8m2!3d28.0344974!4d-82.5421181!4m9!1m1!4e1!1m5!1m1!1s0x88c2c1c710cdac71:0xb62899a3c700c6eb!2m2!1d-82.5421181!2d28.0344974!3e0"
-                )
-              }
-              color="primary"
-              variant="contained"
-            >
-              Directions
-            </DirectionsButton>
+            <div className='buttons'>
+              <DirectionsButton
+                onClick={() =>
+                  window.open(
+                    "https://www.google.com/maps/dir/27.7819919,-82.6416247/Tampa+Joe's,+9316+Anderson+Rd,+Tampa,+FL+33634/@27.906128,-82.6649352,12z/data=!3m1!4b1!4m17!1m6!3m5!1s0x88c2c1c710cdac71:0xb62899a3c700c6eb!2sTampa+Joe's!8m2!3d28.0344974!4d-82.5421181!4m9!1m1!4e1!1m5!1m1!1s0x88c2c1c710cdac71:0xb62899a3c700c6eb!2m2!1d-82.5421181!2d28.0344974!3e0"
+                  )
+                }
+                color="primary"
+                variant="contained"
+              >
+                Directions
+              </DirectionsButton>
 
-            <MenuButton
-              onClick={() => window.open('http://tampajoes.com/')}
-              color="secondary"
-              variant="contained"
-            >
-              MENU
-            </MenuButton>
+              <MenuButton
+                onClick={() => window.open('http://tampajoes.com/')}
+                color="secondary"
+                variant="contained"
+              >
+                MENU
+              </MenuButton>
+            </div>
           </div>
 
           <div className="sponsor">
@@ -173,5 +175,12 @@ const ContentContainer = styled.div`
     img {
       margin: 20px 0;
     }
+  }
+  
+  .buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   }
 `;
