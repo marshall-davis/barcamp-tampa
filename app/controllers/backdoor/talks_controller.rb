@@ -9,6 +9,29 @@ module Backdoor
     #   send_foo_updated_email
     # end
 
+    def create
+      now = Time.now
+      hour = if resource_params[:time].to_i < 9
+               resource_params[:time].to_i + 12
+             else
+               resource_params[:time].to_i
+             end
+      resource = resource_class.new(resource_params)
+      authorize_resource(resource)
+      resource.time = "#{now.year}-#{now.month}-#{now.day} #{hour}:00"
+
+      if resource.save
+        redirect_to(
+            [namespace, resource],
+            notice: translate_with_resource("create.success"),
+        )
+      else
+        render :new, locals: {
+            page: Administrate::Page::Form.new(dashboard, resource),
+        }
+      end
+    end
+
     # Override this method to specify custom lookup behavior.
     # This will be used to set the resource for the `show`, `edit`, and `update`
     # actions.

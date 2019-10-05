@@ -8,16 +8,18 @@ class TalkDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    user: Field::BelongsTo,
-    room: Field::BelongsTo,
-    id: Field::Number,
-    title: Field::String,
-    description: Field::String,
-    created_at: Field::DateTime,
-    updated_at: Field::DateTime,
-    time: Field::DateTime,
-    name: Field::String,
-    twitter: Field::String,
+      room: Field::BelongsTo,
+      id: Field::Number,
+      title: Field::String,
+      description: Field::String,
+      created_at: Field::DateTime,
+      updated_at: Field::DateTime,
+      time: Field::Select.with_options(
+        collection: [9, 10, 11, 1, 2, 3],
+        prettify: true
+      ),
+      name: Field::String,
+      twitter: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -26,17 +28,17 @@ class TalkDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-  room
   id
+  room
+  time
   title
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-  user
-  room
   id
+  room
   title
   description
   created_at
