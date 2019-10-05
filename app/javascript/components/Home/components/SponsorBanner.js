@@ -43,10 +43,9 @@ const BannerContainer = styled.div`
   align-items: center;
   text-align: center;
   flex-direction: column;
-  margin-bottom: 50px;
 
   h2 {
-    margin: 0 0 50px 0;
+    margin: 0 0 25px 0;
   }
 
   .rotating-content {
