@@ -54,7 +54,6 @@ const Home = () => {
     }
     return hashMap;
   };
-  // const talks = makeTalkMap({ talks: mockTalks, talkTimeSlots });
   const realTalks =
     realTalk.length > 0 ? makeTalkMap({ talks: realTalk, talkTimeSlots }) : [];
 
@@ -193,7 +192,7 @@ const Home = () => {
           color="primary"
           aria-label="add"
         >
-          Talks
+          Schedule
         </TalksButton>
       )}
     </HomeContainer>
@@ -211,7 +210,7 @@ const HomeContainer = styled.div`
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  padding-bottom: 100px;
+  padding-bottom: 140px;
 `;
 
 const Header = styled.div`
@@ -326,8 +325,8 @@ const SponsorContainer = styled.div`
 const TalksButton = withStyles({
   root: {
     background: 'rgb(31, 150, 242)',
-    height: 70,
-    width: 70,
+    height: 100,
+    width: 100,
     padding: '0 30px',
     position: 'fixed',
     bottom: '0',

@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Accordion = ({ talkData, currentHour }) => {
-  const { title, description, room, name, twitter,  } = talkData;
+  const { title, description, room, name, twitter } = talkData;
   const [isExpanded, setExpanded] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const classes = useStyles();
@@ -78,26 +78,6 @@ const Accordion = ({ talkData, currentHour }) => {
                   rel="noopener noreferrer"
                 >
                   <Icon color={'#33CCFF'} icon={faTwitterSquare} />
-                </a>
-              )}
-
-              {linkedin && (
-                <a
-                  href={`https://www.linkedin.com/in/${linkedin}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon color={'#4875B4'} icon={faLinkedin} />
-                </a>
-              )}
-
-              {linkedin && (
-                <a
-                  href={`https://www.facebook.com/${facebook}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon color={'#3b5998'} icon={faFacebookSquare} />
                 </a>
               )}
               {/*{  favorites.includes(id) ? (*/}
