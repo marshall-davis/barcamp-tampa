@@ -207,6 +207,8 @@ const ActionButton = withStyles({
     padding: '0',
     margin: '5px 0 0 0',
     boxShadow: '0 3px 5px 2px rgba(41,41,41,.25)',
+    fontFamily:
+      'font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;',
     '&:hover': {
       background: 'rgb(38, 177, 97)',
       transition: '.8s',
