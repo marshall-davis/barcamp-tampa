@@ -23,7 +23,7 @@ export const TALKS = gql`
 
 export const TALKS_BY_YEAR = gql`
   query {
-    talks(year: 2017) {
+    talks(year: 2019) {
       id
       title
       time

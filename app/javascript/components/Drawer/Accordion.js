@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
@@ -14,6 +14,8 @@ import {
   faFacebookSquare,
   faLinkedin,
 } from '@fortawesome/free-brands-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons/faStar';
+import { faStar as starLight } from '@fortawesome/free-regular-svg-icons';
 
 const useStyles = makeStyles(theme => ({
   containerRoot: {
@@ -40,21 +42,17 @@ const useStyles = makeStyles(theme => ({
 
 const Accordion = ({ talkData, currentHour }) => {
   console.log('talkData', talkData);
-  const { title, description, speaker, room } = talkData;
+  const { title, description, speaker, room, id } = talkData;
   const { firstName, lastName, twitter, facebook, linkedin } = speaker;
-
+  const [isExpanded, setExpanded] = useState(false);
+  const [favorites, setFavorites] = useState([]);
   const classes = useStyles();
-  const [expanded, setExpanded] = useState(false);
-
-  const handleChange = panel => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
 
   return (
     <AccordionContainer className={classes.containerRoot}>
       <ExpansionPanel
-        expanded={expanded === 'panel1'}
-        onChange={handleChange('panel1')}
+        expanded={isExpanded}
+        onChange={() => setExpanded(!isExpanded)}
       >
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
@@ -75,7 +73,7 @@ const Accordion = ({ talkData, currentHour }) => {
             </div>
 
             <div className="social-media">
-              {true && (
+              {twitter && (
                 <a
                   href={`https://twitter.com/${twitter}`}
                   target="_blank"
@@ -104,8 +102,22 @@ const Accordion = ({ talkData, currentHour }) => {
                   <Icon color={'#3b5998'} icon={faFacebookSquare} />
                 </a>
               )}
+              {/*{  favorites.includes(id) ? (*/}
+              {/*  <Icon*/}
+              {/*    onClick={() =>*/}
+              {/*      setFavorites(favorites.filter(favorite => favorite !== id))*/}
+              {/*    }*/}
+              {/*    color={'#ffd700'}*/}
+              {/*    icon={faStar}*/}
+              {/*  />*/}
+              {/*) : (*/}
+              {/*  <Icon*/}
+              {/*    onClick={() => setFavorites([...favorites, id])}*/}
+              {/*    color={'#ffd700'}*/}
+              {/*    icon={starLight}*/}
+              {/*  />*/}
+              {/*)}*/}
             </div>
-            <ActionButton color="secondary">Attend Talk</ActionButton>
           </AccordionContent>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -178,7 +190,7 @@ const AccordionContent = styled.div`
   }
 
   .social-media {
-    width: 50%;
+    width: 30%;
     display: flex;
     justify-content: space-around;
     align-items: center;

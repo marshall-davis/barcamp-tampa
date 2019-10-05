@@ -6,6 +6,7 @@ import SwipeableDrawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import ReactSwipe from 'react-swipe';
 import Accordion from './Accordion';
+import BarCampHorizontal from '../../../assets/images/barcamp-horizontal.png';
 import {
   CheckinContent,
   LunchContent,
@@ -26,7 +27,8 @@ const Drawer = ({
 }) => {
   const Carousel = () => {
     const [reactSwipeRef, setReactSwipeEl] = useState(null);
-    // const height = useWindowHeight({ heightOffset: 100 });
+    const [favorites, setFavorites] = useState([]);
+
     const eventHour =
       currentHour === '8' ||
       currentHour === '12' ||
@@ -34,13 +36,20 @@ const Drawer = ({
       currentHour === '5';
     console.log('eventHour', eventHour);
 
-    const talkAccordions = talkData.map(talk => {
-      return (
-        <ListItem key={uuid()}>
-          <Accordion key={uuid()} talkData={talk} currentHour={currentHour} />
-        </ListItem>
-      );
-    });
+    const talkAccordions =
+      talkData &&
+      talkData.map(talk => {
+        return (
+          <ListItem key={uuid()}>
+            <Accordion
+              hoistedFavorites={setFavorites}
+              key={uuid()}
+              talkData={talk}
+              currentHour={currentHour}
+            />
+          </ListItem>
+        );
+      });
 
     const contentCard = ['1'].map(() => {
       const findContent = () => {
@@ -120,7 +129,9 @@ const Drawer = ({
     <StyledDrawer anchor="right" open={drawerState} onClose={() => null}>
       <DrawerWrapper>
         <HeaderContainer>
+          <img src={BarCampHorizontal} alt="Horizontal BarCamp Logo" />
           <h3>{`${currentHour}:00`}</h3>
+          <span>{``}</span>
         </HeaderContainer>
         <Carousel currentHout={currentHour} />
       </DrawerWrapper>
@@ -228,7 +239,7 @@ const HeaderContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 50px;
+  height: 55px;
   text-align: center;
   box-shadow: 0 2px 20px -2px rgba(0, 0, 0, 0.2);
   z-index: 20;
@@ -236,6 +247,19 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   right: 0;
+
+  h3 {
+    width: 100px;
+  }
+
+  img {
+    margin-left: 10px;
+    width: 100px;
+  }
+
+  span {
+    width: 100px;
+  }
 
   @media only screen and (max-device-width: 520px) {
     width: 460px;

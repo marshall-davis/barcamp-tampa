@@ -63,7 +63,7 @@ const Home = () => {
   return (
     <HomeContainer>
       <Drawer
-        talkData={realTalks['11']}
+        talkData={realTalks[currentTalkGroup]}
         drawerState={drawerState}
         setDrawerState={setDrawerState}
         setTalkHour={setTalkTimeSlotIndex}
@@ -176,10 +176,12 @@ const Home = () => {
             sponsors={gigabyte}
           />
           <SponsorBanner
+            isSliding={isSliding}
             header="Academic Sponsors"
             sponsors={academicPartners}
           />
           <SponsorBanner
+            isSliding={isSliding}
             header="Community Sponsors"
             sponsors={communitySponsors}
           />
