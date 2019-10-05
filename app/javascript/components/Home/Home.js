@@ -61,23 +61,20 @@ const Home = () => {
           <h1>Welcome to BarCamp 2019</h1>
           <img src={BarCampTechNova} alt="barcamp logo" />
 
-          <a
-            href="https://www.google.com/maps/dir//Keiser+University+tampa/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x88c2c20cbe97347d:0xa14466b5008394c1?sa=X&ved=2ahUKEwiR0vX1vIHlAhVROq0KHfKaAawQ9RcwFHoECAoQEA"
-            target="_blank"
-            rel="noopener noreferrer"
+          <h3>Keiser University</h3>
+          <span>5002 W Waters Ave, Tampa, FL 33634</span>
+
+          <DirectionsButton
+            onClick={() =>
+              window.open(
+                'https://www.google.com/maps/dir//Keiser+University+tampa/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x88c2c20cbe97347d:0xa14466b5008394c1?sa=X&ved=2ahUKEwiR0vX1vIHlAhVROq0KHfKaAawQ9RcwFHoECAoQEA'
+              )
+            }
+            color="primary"
+            variant="contained"
           >
-            <h3>Keiser University</h3>
-            <span>5002 W Waters Ave, Tampa, FL 33634</span>
-            <a
-              href="https://www.google.com/maps/dir//Keiser+University+tampa/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x88c2c20cbe97347d:0xa14466b5008394c1?sa=X&ved=2ahUKEwiR0vX1vIHlAhVROq0KHfKaAawQ9RcwFHoECAoQEA"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <DirectionsButton color="primary" variant="contained">
-                Directions
-              </DirectionsButton>
-            </a>
-          </a>
+            Directions
+          </DirectionsButton>
         </Header>
 
         <div className="schedule">
@@ -105,35 +102,32 @@ const Home = () => {
             <span>Wrap-up & raffles</span>
             <b>at 4:00 PM</b>
           </div>
-          <a
-            href="https://www.google.com/maps/dir/Keiser+University+Tampa,+West+Waters+Avenue,+Tampa,+FL/tampa+joes/@28.0276851,-82.5456225,15z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x88c2c20cbe97347d:0xa14466b5008394c1!2m2!1d-82.5294327!2d28.0248903!1m5!1m1!1s0x88c2c1c710cdac71:0xb62899a3c700c6eb!2m2!1d-82.5421181!2d28.0344974"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className="afterparty">
-              <h4>Afterparty</h4>
-              <h5>TAMPA JOES</h5>
-              <span>316 Anderson Rd, Tampa, FL 33634 </span>
-              <a
-                href="https://www.google.com/maps/dir/Keiser+University+Tampa,+West+Waters+Avenue,+Tampa,+FL/tampa+joes/@28.0276851,-82.5456225,15z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x88c2c20cbe97347d:0xa14466b5008394c1!2m2!1d-82.5294327!2d28.0248903!1m5!1m1!1s0x88c2c1c710cdac71:0xb62899a3c700c6eb!2m2!1d-82.5421181!2d28.0344974"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <DirectionsButton color="primary" variant="contained">
-                  Directions
-                </DirectionsButton>
-              </a>
-              <a
-                href="http://tampajoes.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <MenuButton color="secondary" variant="contained">
-                  MENU
-                </MenuButton>
-              </a>
-            </div>
-          </a>
+
+          <div className="afterparty">
+            <h4>Afterparty</h4>
+            <h5>TAMPA JOES</h5>
+            <span>316 Anderson Rd, Tampa, FL 33634 </span>
+
+            <DirectionsButton
+              onClick={() =>
+                window.open(
+                  "https://www.google.com/maps/dir/27.7819919,-82.6416247/Tampa+Joe's,+9316+Anderson+Rd,+Tampa,+FL+33634/@27.906128,-82.6649352,12z/data=!3m1!4b1!4m17!1m6!3m5!1s0x88c2c1c710cdac71:0xb62899a3c700c6eb!2sTampa+Joe's!8m2!3d28.0344974!4d-82.5421181!4m9!1m1!4e1!1m5!1m1!1s0x88c2c1c710cdac71:0xb62899a3c700c6eb!2m2!1d-82.5421181!2d28.0344974!3e0"
+                )
+              }
+              color="primary"
+              variant="contained"
+            >
+              Directions
+            </DirectionsButton>
+
+            <MenuButton
+              onClick={() => window.open('http://tampajoes.com/')}
+              color="secondary"
+              variant="contained"
+            >
+              MENU
+            </MenuButton>
+          </div>
         </div>
       </WelcomeContainer>
 

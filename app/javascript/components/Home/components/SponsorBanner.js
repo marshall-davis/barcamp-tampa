@@ -6,8 +6,6 @@ const SponsorBanner = ({
   sponsors,
   header,
   headerStyle,
-  scrollSpeed,
-  scrollOffset,
 }) => {
   const slide = true;
   return (
@@ -53,7 +51,7 @@ const BannerContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: no-content;
+    overflow: -moz-scrollbars-horizontal;
     margin: 10px 0;
 
     ${props =>
