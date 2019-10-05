@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import styled from 'styled-components';
 import Fab from '@material-ui/core/Fab';
 import Button from '@material-ui/core/Button';
@@ -34,7 +34,7 @@ const Home = () => {
     if (!loading && data.talks.length) {
       setTalks(data.talks);
     }
-  });
+  }, [data]);
 
   const makeTalkMap = ({ talks, talkTimeSlots }) => {
     let hashMap = {};
