@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Fab from '@material-ui/core/Fab';
 import Button from '@material-ui/core/Button';
-import { mockTalks } from '../Drawer/mockTalks';
+import { format } from 'date-fns';
 import Drawer from '../Drawer/Drawer';
 import withStyles from '@material-ui/core/styles/withStyles';
-import SponsorBanner from './components/SponsorBanner';
-import BarCampTechNova from '../../../assets/images/barcamp-square.png';
-// import { useQuery } from "@apollo/react-hooks";
-// import { TALKS } from "../Drawer/quries";
+import SponsorBanner from './SponsorBanner';
+import { BarCampSquare } from '../../../assets/images';
+import { useQuery } from '@apollo/react-hooks';
+import { TALKS_BY_YEAR } from '../Drawer/quries';
 import {
   petabyte,
   gigabyte,
@@ -18,37 +18,48 @@ import {
   mediaPartners,
 } from '../../../assets/images/sponsors';
 
-// this is where map will be
 const Home = () => {
-  // const { loading, error, data } = useQuery(TALKS);
-  // if (error) console.warn('TALKS Query Error: ', error);
-
+  const { loading, error, data } = useQuery(TALKS_BY_YEAR);
+  if (error) console.warn('TALKS Query Error: ', error);
   const [drawerState, setDrawerState] = React.useState(false);
-  const talkTimeSlots = ['9', '10', '11', '12', '1', '2', '3', '4', '5'];
+  const talkTimeSlots = ['8', '9', '10', '11', '12', '1', '2', '3', '4', '5'];
   const [talkTimeSlotIndex, setTalkTimeSlotIndex] = useState(0);
+  const [realTalk, setTalks] = useState([]);
   const currentTalkGroup = talkTimeSlots[talkTimeSlotIndex];
+
+  useEffect(() => {
+    if (!loading && data.talks.length) {
+      setTalks(data.talks);
+    }
+  });
 
   const makeTalkMap = ({ talks, talkTimeSlots }) => {
     let hashMap = {};
+    if (talks === undefined || talks === null)
+      return console.error('makeTalkMap: talks undefined or null');
 
-    if (talks[0]) {
+    if (talks.length && talks[0]) {
       for (let i = 0; i < talkTimeSlots.length; i++) {
         const currentTimeSlot = talkTimeSlots[i];
-        const talksThisHour = talks.filter(
-          talk => talk.time === currentTimeSlot
-        );
+        const talksThisHour = talks.filter(talk => {
+          const formattedTime = `${format(talk.time, 'h')}`;
+          return formattedTime === currentTimeSlot;
+        });
 
         hashMap[currentTimeSlot] = talksThisHour;
       }
     }
     return hashMap;
   };
-  const talks = makeTalkMap({ talks: mockTalks, talkTimeSlots });
+  // const talks = makeTalkMap({ talks: mockTalks, talkTimeSlots });
+  const realTalks =
+    realTalk.length > 0 ? makeTalkMap({ talks: realTalk, talkTimeSlots }) : [];
+  if (realTalk.length) console.log('realTalks', realTalks);
 
   return (
     <HomeContainer>
       <Drawer
-        talkData={talks[currentTalkGroup]}
+        talkData={realTalks['11']}
         drawerState={drawerState}
         setDrawerState={setDrawerState}
         setTalkHour={setTalkTimeSlotIndex}
@@ -59,7 +70,7 @@ const Home = () => {
       <WelcomeContainer>
         <Header>
           <h1>Welcome to BarCamp 2019</h1>
-          <img src={BarCampTechNova} alt="barcamp logo" />
+          <img src={BarCampSquare} alt="barcamp logo" />
 
           <h3>Keiser University</h3>
           <span>5002 W Waters Ave, Tampa, FL 33634</span>
@@ -150,7 +161,7 @@ const Home = () => {
       </SponsorContainer>
 
       <ButtonContainer>
-        {false && (
+        {true && (
           <StyledButton
             onClick={() => setDrawerState(!drawerState)}
             color="primary"
@@ -306,7 +317,7 @@ const StyledButton = withStyles({
   },
 })(Fab);
 
-const DirectionsButton = withStyles({
+export const DirectionsButton = withStyles({
   root: {
     background: 'rgb(38, 177, 97)',
     borderRadius: 3,
@@ -327,7 +338,7 @@ const DirectionsButton = withStyles({
   },
 })(Button);
 
-const MenuButton = withStyles({
+export const MenuButton = withStyles({
   root: {
     background: 'rgb(31, 150, 242)',
     borderRadius: 3,

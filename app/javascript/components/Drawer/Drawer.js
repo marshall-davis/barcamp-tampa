@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import withStyles from '@material-ui/core/styles/withStyles';
 import SwipeableDrawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import ReactSwipe from 'react-swipe';
-import Accordion from './components/Accordion';
-import withStyles from '@material-ui/core/styles/withStyles';
+import Accordion from './Accordion';
+import {
+  CheckinContent,
+  LunchContent,
+  AfterpartyContent,
+  WrapUpContent,
+} from './ContentCards';
+
 const uuid = require('uuid/v1');
 
 const Drawer = ({
@@ -20,23 +27,40 @@ const Drawer = ({
   const Carousel = () => {
     const [reactSwipeRef, setReactSwipeEl] = useState(null);
     // const height = useWindowHeight({ heightOffset: 100 });
+    const eventHour =
+      currentHour === '8' ||
+      currentHour === '12' ||
+      currentHour === '4' ||
+      currentHour === '5';
+    console.log('eventHour', eventHour);
+
+    const talkAccordions = talkData.map(talk => {
+      return (
+        <ListItem key={uuid()}>
+          <Accordion key={uuid()} talkData={talk} currentHour={currentHour} />
+        </ListItem>
+      );
+    });
+
+    const contentCard = ['1'].map(() => {
+      const findContent = () => {
+        switch (currentHour) {
+          case '8':
+            return <CheckinContent key={uuid()} />;
+          case '12':
+            return <LunchContent key={uuid()} />;
+          case '4':
+            return <WrapUpContent key={uuid()} />;
+          case '5':
+            return <AfterpartyContent key={uuid()} />;
+        }
+      };
+
+      return <ListItem key={uuid()}>{findContent()}</ListItem>;
+    });
 
     const talkPages = Array.apply(null, Array(numberOfHours)).map(() => {
-      return (
-        <div key={uuid()}>
-          {talkData.map(talk => {
-            return (
-              <ListItem key={uuid()}>
-                <Accordion
-                  key={uuid()}
-                  talkData={talk}
-                  currentHour={currentHour}
-                />
-              </ListItem>
-            );
-          })}
-        </div>
-      );
+      return <div key={uuid()}>{eventHour ? contentCard : talkAccordions}</div>;
     });
     const slideStart =
       talkTimeSlotIndex < numberOfHours && talkTimeSlotIndex >= 0

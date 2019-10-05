@@ -39,6 +39,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Accordion = ({ talkData, currentHour }) => {
+  console.log('talkData', talkData);
   const { title, description, speaker, room } = talkData;
   const { firstName, lastName, twitter, facebook, linkedin } = speaker;
 
@@ -69,8 +70,8 @@ const Accordion = ({ talkData, currentHour }) => {
           <AccordionContent>
             <div className="speaker-info">
               <p className="description">{description}</p>
-              <p className="speaker-name">{`By ${firstName} ${lastName}`}</p>
-              <p className="talk-time">{`@ ${currentHour}:00`}</p>
+              <p className="speaker-name">{`by ${firstName} ${lastName}`}</p>
+              <p className="talk-time">{`at ${currentHour}:00`}</p>
             </div>
 
             <div className="social-media">

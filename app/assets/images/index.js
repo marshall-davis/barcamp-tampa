@@ -1,9 +1,4 @@
-import BarCampSquare from './barcamp-square.png'
-import SDG from './sdg.png'
-import TechNova from './technova.png'
+import BarCampSquare from './barcamp-square.png';
+import { CheckinContent } from '../../javascript/components/Drawer/ContentCards';
 
-export {
-  BarCampSquare,
-  SDG,
-  TechNova
-}
+export { BarCampSquare, CheckinContent };

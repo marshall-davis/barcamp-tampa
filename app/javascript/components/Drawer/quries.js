@@ -13,10 +13,29 @@ export const TALKS = gql`
         lastName
         twitter
         facebook
-        #TODO: need linkedin
       }
       room {
         name
+      }
+    }
+  }
+`;
+
+export const TALKS_BY_YEAR = gql`
+  query {
+    talks(year: 2017) {
+      id
+      title
+      time
+      twitter
+      description
+      room {
+        name
+      }
+      speaker: user {
+        firstName
+        lastName
+        twitter
       }
     }
   }

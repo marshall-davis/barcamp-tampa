@@ -2,11 +2,7 @@ import React from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import PropTypes from 'prop-types';
 
-const SponsorBanner = ({
-  sponsors,
-  header,
-  headerStyle,
-}) => {
+const SponsorBanner = ({ sponsors, header, headerStyle }) => {
   const slide = true;
   return (
     <BannerContainer slide={slide}>
