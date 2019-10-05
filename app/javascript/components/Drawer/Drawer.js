@@ -29,6 +29,18 @@ const Drawer = ({
     const [reactSwipeRef, setReactSwipeEl] = useState(null);
     const [favorites, setFavorites] = useState([]);
 
+    const sortFunc = k => {
+      if (k === 'K') return 0;
+      else if (k === 'N') return 13;
+      else return +k;
+    };
+
+    const sortedByRoom = talkData.sort(
+      (a, b) =>
+        sortFunc(a.room.name.substring(0, 3)) -
+        sortFunc(b.room.name.substring(0, 3))
+    );
+
     const eventHour =
       currentHour === '8' ||
       currentHour === '12' ||
@@ -37,7 +49,7 @@ const Drawer = ({
 
     const talkAccordions =
       talkData &&
-      talkData.map(talk => {
+      sortedByRoom.map(talk => {
         return (
           <ListItem key={uuid()}>
             <Accordion

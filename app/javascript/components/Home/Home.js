@@ -45,7 +45,10 @@ const Home = () => {
       for (let i = 0; i < talkTimeSlots.length; i++) {
         const currentTimeSlot = talkTimeSlots[i];
         const talksThisHour = talks.filter(talk => {
-          const formattedTime = `${format(new Date(talk.time * 1000), 'h')}`;
+          const formatTime = time => {
+            return `${format(new Date(time * 1000), 'h')}`;
+          };
+          const formattedTime = `${formatTime(talk.time)}`;
           return formattedTime === currentTimeSlot;
         });
 
