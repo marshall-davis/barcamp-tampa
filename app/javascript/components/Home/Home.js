@@ -362,6 +362,7 @@ const SurveyButton = withStyles({
     margin: '10px',
     zIndex: '25',
     borderRadius: '8px',
+    color: 'black',
     fontFamily:
       'font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;',
   },
