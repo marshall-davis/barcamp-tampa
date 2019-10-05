@@ -8,14 +8,13 @@ class TalkDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    user: Field::BelongsTo,
     room: Field::BelongsTo,
     id: Field::Number,
     title: Field::String,
     description: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    time: Field::DateTime,
+    time: Field::Time,
     name: Field::String,
     twitter: Field::String,
   }.freeze
@@ -34,7 +33,6 @@ class TalkDashboard < Administrate::BaseDashboard
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-  user
   room
   id
   title
