@@ -144,7 +144,7 @@ export const AfterpartyContent = () => {
 
           <div className="sponsor">
             <div>
-              <h4>🍻 Afterparty  sponsored by SourceToad 🍻</h4>
+              <h4>🍻 Afterparty sponsored by SourceToad 🍻</h4>
               <img src={sourceToad} alt="SourceToad Logo" />
             </div>
           </div>
