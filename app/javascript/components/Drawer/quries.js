@@ -28,14 +28,10 @@ export const TALKS_BY_YEAR = gql`
       title
       time
       twitter
+      name
       description
       room {
         name
-      }
-      speaker: user {
-        firstName
-        lastName
-        twitter
       }
     }
   }
